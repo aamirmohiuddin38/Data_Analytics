@@ -39,3 +39,5 @@
 
 -- SELECT model_name, quantity FROM canon_cameras
 -- WHERE quantity >= 50;
+
+-- checking git
