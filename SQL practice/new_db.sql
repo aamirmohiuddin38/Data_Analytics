@@ -69,3 +69,9 @@
 -- SELECT REPLACE('Aamir','a', '$'); - CASE SENSITIVE
 
 -- SELECT REPLACE(stu_fname,'a','@') from students;
+
+-- TODO: 4. Give me list of emails. If email is longer than 7 character, truncate it with ...
+-- SELECT SUBSTRING('Aamir',2,4);
+-- SELECT SUBSTRING(email, 1, 7) from students;
+
+-- SELECT CONCAT(SUBSTRING(email, 1, 7), "...") AS Emails from students;
