@@ -81,3 +81,6 @@
 
 -- TODO: 6. Get the length of all the registerd emails
 -- SELECT email, CHAR_LENGTH(email) as length from students;
+
+-- TODO: 7. Get me all first name in uppercase and last name in lower case
+-- SELECT UPPER(stu_fname) AS FNAME, LOWER(stu_lname) as LNAME from students;
