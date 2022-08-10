@@ -45,3 +45,5 @@
 -- ('mikeg@yahoo.com', 'Mike', 'george', 39, 15, 4),
 -- ('manon@gmail.com', 'manon', 'lea', 27, 6, 7),
 -- ('pauline@gmail.com', 'pauline', 'lucas', 15, 1, 8);
+
+SELECT * FROM STUDENTS;
