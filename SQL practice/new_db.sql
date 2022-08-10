@@ -75,3 +75,9 @@
 -- SELECT SUBSTRING(email, 1, 7) from students;
 
 -- SELECT CONCAT(SUBSTRING(email, 1, 7), "...") AS Emails from students;
+
+-- TODO: 5. REVERSE FUNCTION
+-- SELECT REVERSE(stu_fname) from students;
+
+-- TODO: 6. Get the length of all the registerd emails
+-- SELECT email, CHAR_LENGTH(email) as length from students;
