@@ -28,6 +28,10 @@
 -- SELECT * from customers 
 -- WHERE name = "Sno";
 
-UPDATE customers
-SET email = "Sno@dev.in" 
-WHERE name = "Sno";
+-- UPDATE customers
+-- SET email = "Sno@dev.in" 
+-- WHERE name = "Sno";
+
+-- TODO: DELETE SOME DATA
+-- DELETE FROM customers 
+-- WHERE customer_id = 6;
