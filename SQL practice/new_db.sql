@@ -1,4 +1,4 @@
--- TODO: if anything goes wrong, use this chunk of code 
+-- TODO: CREATING DB,TABLE and INSERTNG DATA
 
 -- SHOW DATABASES;
 
@@ -46,4 +46,20 @@
 -- ('manon@gmail.com', 'manon', 'lea', 27, 6, 7),
 -- ('pauline@gmail.com', 'pauline', 'lucas', 15, 1, 8);
 
-SELECT * FROM STUDENTS;
+-- SELECT * FROM STUDENTS;
+
+
+-- TODO: RETREIVING SOME DATA
+-- TODO: 1. Give me full name of all the students --> CONCAT
+
+-- SELECT concat(stu_fname, ' ', stu_lname) as FULL_NAME from students;
+
+-- TODO: 2. Give me full name and login count of all users.
+
+-- SELECT CONCAT(stu_fname, ' ', stu_lname) as FullName, 
+-- login_count 
+-- from students;
+
+-- SELECT CONCAT('User login count is ', login_count , ' and course count is ', course_count)
+-- from students;
+
