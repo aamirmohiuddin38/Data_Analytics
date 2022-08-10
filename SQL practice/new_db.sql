@@ -63,3 +63,9 @@
 -- SELECT CONCAT('User login count is ', login_count , ' and course count is ', course_count)
 -- from students;
 
+-- TODO: 3. While getting first names , change a to @
+
+-- select stu_fname from students;
+-- SELECT REPLACE('Aamir','a', '$'); - CASE SENSITIVE
+
+-- SELECT REPLACE(stu_fname,'a','@') from students;
