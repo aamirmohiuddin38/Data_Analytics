@@ -84,3 +84,7 @@
 
 -- TODO: 7. Get me all first name in uppercase and last name in lower case
 -- SELECT UPPER(stu_fname) AS FNAME, LOWER(stu_lname) as LNAME from students;
+
+-- TODO: MORE FUNCTIONS
+-- 8. How many users are there on your website
+-- SELECT DISTINCT stu_fname as USERS from students;
