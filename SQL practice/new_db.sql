@@ -106,8 +106,8 @@
 -- SELECT stu_fname, login_count from students
 -- ORDER BY login_count DESC 
 -- LIMIT 5;
-    
+
 -- 11. top 3rd user
 -- SELECT stu_fname, login_count from students
 -- ORDER BY login_count DESC 
--- LIMIT 2,1;
+-- LIMIT 2,1; 
