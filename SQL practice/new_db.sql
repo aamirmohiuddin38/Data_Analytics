@@ -88,3 +88,16 @@
 -- TODO: MORE FUNCTIONS
 -- 8. How many users are there on your website
 -- SELECT DISTINCT stu_fname as USERS from students;
+
+-- TODO: 9. Arrange all users based on number of login count
+-- SELECT DISTINCT stu_fname, login_count, course_count 
+-- from students 
+-- ORDER BY login_count DESC;
+
+-- SELECT DISTINCT stu_fname, login_count, course_count 
+-- from students 
+-- ORDER BY stu_fname ASC;
+
+-- SELECT DISTINCT stu_fname, login_count, course_count 
+-- from students 
+-- ORDER BY 3;
