@@ -101,3 +101,13 @@
 -- SELECT DISTINCT stu_fname, login_count, course_count 
 -- from students 
 -- ORDER BY 3;
+
+-- TODO: 10. Get sorted result but top 5
+-- SELECT stu_fname, login_count from students
+-- ORDER BY login_count DESC 
+-- LIMIT 5;
+    
+-- 11. top 3rd user
+-- SELECT stu_fname, login_count from students
+-- ORDER BY login_count DESC 
+-- LIMIT 2,1;
