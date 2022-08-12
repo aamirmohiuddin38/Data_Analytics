@@ -121,3 +121,6 @@
 -- WHERE stu_fname LIKE 'Y_g%';
 
 -- here underscore means one character
+
+-- TODO: 13. How many users on registerd on this website. Give a number
+-- SELECT COUNT(DISTINCT stu_fname, stu_lname)As COUNT from students;
