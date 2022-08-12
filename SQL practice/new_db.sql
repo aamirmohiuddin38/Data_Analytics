@@ -111,3 +111,13 @@
 -- SELECT stu_fname, login_count from students
 -- ORDER BY login_count DESC 
 -- LIMIT 2,1; 
+
+-- TODO: 12. Get the info of user whose name is like 'esh'
+-- SELECT stu_fname from students
+-- WHERE stu_fname LIKE '%esh'; 
+-- Here '%' means any number of characters but ending with 'esh'
+
+-- SELECT stu_fname from students
+-- WHERE stu_fname LIKE 'Y_g%';
+
+-- here underscore means one character
