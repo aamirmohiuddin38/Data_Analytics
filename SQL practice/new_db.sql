@@ -133,6 +133,13 @@
 -- from students
 -- GROUP BY signup_month;
 
-SELECT signup_month, COUNT(*) as Count 
-from students
-GROUP BY signup_month;
+-- SELECT signup_month, COUNT(*) as Count 
+-- from students
+-- GROUP BY signup_month;
+
+-- TODO: 14. Find the student with max login and also find the one with min course count: MIN MAX and SUBQUERIES
+-- SELECT email, login_count from students
+-- WHERE login_count = (SELECT MAX(login_count) from students);
+
+-- SELECT email, course_count from students
+-- WHERE course_count = (SELECT MIN(course_count) from students);
