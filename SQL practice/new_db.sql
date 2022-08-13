@@ -152,3 +152,7 @@
 -- SELECT MIN(login_count), signup_month from students
 -- WHERE signup_month = 7 OR signup_month = 10
 -- GROUP BY signup_month;
+
+-- TODO: 16. Total number of login and average number of courses taken by users by month
+-- SELECT SUM(login_count), AVG(course_count), signup_month from students
+-- GROUP BY signup_month;
