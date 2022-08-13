@@ -143,3 +143,12 @@
 
 -- SELECT email, course_count from students
 -- WHERE course_count = (SELECT MIN(course_count) from students);
+
+-- TODO: 15. Lowes number of login count in 7th and 10th month: MIN MAX and GROUP BY
+-- SELECT MAX(login_count), signup_month from students
+-- WHERE signup_month = 7 OR signup_month = 10
+-- GROUP BY signup_month;
+
+-- SELECT MIN(login_count), signup_month from students
+-- WHERE signup_month = 7 OR signup_month = 10
+-- GROUP BY signup_month;
