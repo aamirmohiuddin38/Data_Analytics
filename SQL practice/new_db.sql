@@ -124,3 +124,15 @@
 
 -- TODO: 13. How many users on registerd on this website. Give a number
 -- SELECT COUNT(DISTINCT stu_fname, stu_lname)As COUNT from students;
+
+-- TODO: GROUP BY clause - THE GROUP BY CLAUSE allows us to group rows based on the values of one or more columns. It returns one row for each group. The columns that appear in hte GROUP BY clause are called group columns.
+-- SELECT signup_month 
+-- from students;
+
+-- SELECT signup_month 
+-- from students
+-- GROUP BY signup_month;
+
+SELECT signup_month, COUNT(*) as Count 
+from students
+GROUP BY signup_month;
