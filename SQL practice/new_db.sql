@@ -156,3 +156,7 @@
 -- TODO: 16. Total number of login and average number of courses taken by users by month
 -- SELECT SUM(login_count), AVG(course_count), signup_month from students
 -- GROUP BY signup_month;
+
+-- TODO: 17. Range based selection BETWEEN AND
+-- SELECT email, login_count, signup_month from students
+-- WHERE signup_month BETWEEN 7 AND 10
