@@ -160,3 +160,20 @@
 -- TODO: 17. Range based selection BETWEEN AND
 -- SELECT email, login_count, signup_month from students
 -- WHERE signup_month BETWEEN 7 AND 10
+
+-- TODO: 18. CASE THEN
+-- SELECT stu_fname, signup_month, email,
+--     CASE
+--         WHEN signup_month BETWEEN 7 AND 10 THEN 'Early Bird'
+--         WHEN signup_month BETWEEN 11 AND 12 THEN 'Regular Bird'
+--         ELSE 'Normal'
+--     END 
+-- from students;
+
+-- SELECT stu_fname, signup_month, email,
+--     CASE
+--         WHEN signup_month BETWEEN 7 AND 10 THEN 'Early Bird'
+--         WHEN signup_month BETWEEN 11 AND 12 THEN 'Regular Bird'
+--         ELSE 'Normal'
+--     END as Label
+-- from students;
