@@ -107,4 +107,94 @@
 | fsde          | prateek      | EE             |             89 |      1 |
 | fsds          | snehal       | CI             |             89 |      1 |
 +---------------+--------------+----------------+----------------+--------+
-but this query has problem if there two students with same marks, it will always get only one */
+but this query has problem if there two students with same marks as in fsbc batch we have two toppers with 65, it will always get only one */
+
+-- TODO: RANK()
+-- so here will give same rank to the same values.
+
+-- select student_batch, student_name, student_stream, students_marks,
+-- row_number() over (order by students_marks desc) as "RowNum" ,
+-- rank() over (order by students_marks desc) as "Rnk"
+-- from ineuron_students; 
+
+-- Output:
+/*
++---------------+--------------+----------------+----------------+--------+-----+
+| student_batch | student_name | student_stream | students_marks | RowNum | Rnk |
++---------------+--------------+----------------+----------------+--------+-----+
+| fsds          | snehal       | CI             |             89 |      1 |   1 |
+| fsde          | prateek      | EE             |             89 |      2 |   1 |
+| fsda          | sanket       | cs             |             82 |      3 |   3 |
+| fsda          | sanket       | cs             |             81 |      4 |   4 |
+| fsda          | saurabh      | cs             |             80 |      5 |   5 |
+| fsda          | shyam        | cs             |             80 |      6 |   5 |
+| fsds          | ajay         | ME             |             78 |      7 |   7 |
+| fsda          | shyam        | ME             |             67 |      8 |   8 |
+| fsde          | mohit        | EE             |             67 |      9 |   8 |
+| fsbc          | sandeep      | ECE            |             65 |     10 |  10 |
+| fsbc          | saurabh      | ECE            |             65 |     11 |  10 |
+| fsds          | ajay         | ME             |             45 |     12 |  12 |
+| fsds          | rakesh       | CI             |             45 |     13 |  12 |
+| fsde          | gaurav       | EE             |             45 |     14 |  12 |
+| fsbc          | pranay       | ECE            |             45 |     15 |  12 |
+| fsde          | anuj         | CI             |             43 |     16 |  16 |
+| fsds          | manisha      | CI             |             34 |     17 |  17 |
+| fsde          | vivek        | EE             |             23 |     18 |  18 |
+| fsde          | mithun       | ECE            |             23 |     19 |  18 |
+| fsbc          | chaitra      | ECE            |             23 |     20 |  18 |
++---------------+--------------+----------------+----------------+--------+-----+
+*/
+
+-- select student_batch, student_name, student_stream, students_marks,
+-- row_number() over (partition by student_batch order by students_marks desc) as "RowNum" ,
+-- rank() over (partition by student_batch order by students_marks desc) as "Rnk"
+-- from ineuron_students;
+
+-- Output:
+/*
++---------------+--------------+----------------+----------------+--------+-----+
+| student_batch | student_name | student_stream | students_marks | RowNum | Rnk |
++---------------+--------------+----------------+----------------+--------+-----+
+| fsbc          | sandeep      | ECE            |             65 |      1 |   1 |
+| fsbc          | saurabh      | ECE            |             65 |      2 |   1 |
+| fsbc          | pranay       | ECE            |             45 |      3 |   3 |
+| fsbc          | chaitra      | ECE            |             23 |      4 |   4 |
+| fsda          | sanket       | cs             |             82 |      1 |   1 |
+| fsda          | sanket       | cs             |             81 |      2 |   2 |
+| fsda          | saurabh      | cs             |             80 |      3 |   3 |
+| fsda          | shyam        | cs             |             80 |      4 |   3 |
+| fsda          | shyam        | ME             |             67 |      5 |   5 |
+| fsde          | prateek      | EE             |             89 |      1 |   1 |
+| fsde          | mohit        | EE             |             67 |      2 |   2 |
+| fsde          | gaurav       | EE             |             45 |      3 |   3 |
+| fsde          | anuj         | CI             |             43 |      4 |   4 |
+| fsde          | vivek        | EE             |             23 |      5 |   5 |
+| fsde          | mithun       | ECE            |             23 |      6 |   5 |
+| fsds          | snehal       | CI             |             89 |      1 |   1 |
+| fsds          | ajay         | ME             |             78 |      2 |   2 |
+| fsds          | ajay         | ME             |             45 |      3 |   3 |
+| fsds          | rakesh       | CI             |             45 |      4 |   3 |
+| fsds          | manisha      | CI             |             34 |      5 |   5 |
++---------------+--------------+----------------+----------------+--------+-----+
+*/
+
+-- SELECT * FROM (
+--     select student_batch, student_name, student_stream, students_marks,
+--     ROW_NUMBER() over (PARTITION BY student_batch order by students_marks DESC) as "RowNum" ,
+--     RANK() over (PARTITION BY student_batch order by students_marks DESC) as "Rnk"
+-- from ineuron_students)AS testData where Rnk = 1;
+
+-- OUTPUT:
+/*
++---------------+--------------+----------------+----------------+--------+-----+
+| student_batch | student_name | student_stream | students_marks | RowNum | Rnk |
++---------------+--------------+----------------+----------------+--------+-----+
+| fsbc          | sandeep      | ECE            |             65 |      1 |   1 |
+| fsbc          | saurabh      | ECE            |             65 |      2 |   1 |
+| fsda          | sanket       | cs             |             82 |      1 |   1 |
+| fsde          | prateek      | EE             |             89 |      1 |   1 |
+| fsds          | snehal       | CI             |             89 |      1 |   1 |
++---------------+--------------+----------------+----------------+--------+-----+
+*/
+
+-- ok we got what we wanted to, but again there is a problem, when same rank is given, the next rank value is assigned to any other (2 in our case)
