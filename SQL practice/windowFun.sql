@@ -26,3 +26,85 @@
 |        119 | fsbc          | saurabh      | ECE            |             65 | saurabh@gmail.com !
 +------------+---------------+--------------+----------------+----------------+-------------------+
 */
+
+-- ANALYTICAL based WINDOW FUNCTIONS
+
+-- TODO:1. ROW_NUMBER()
+
+-- select student_batch, student_name, student_stream, students_marks,
+-- row_number() over (order by students_marks) as "RowNum" from ineuron_students; 
+
+-- OUTPUT:
+/* 
++---------------+--------------+----------------+----------------+--------+
+| student_batch | student_name | student_stream | students_marks | RowNum |
++---------------+--------------+----------------+----------------+--------+
+| fsde          | vivek        | EE             |             23 |      1 |
+| fsde          | mithun       | ECE            |             23 |      2 |
+| fsbc          | chaitra      | ECE            |             23 |      3 |
+| fsds          | manisha      | CI             |             34 |      4 |
+| fsde          | anuj         | CI             |             43 |      5 |
+| fsds          | ajay         | ME             |             45 |      6 |
+| fsds          | rakesh       | CI             |             45 |      7 |
+| fsde          | gaurav       | EE             |             45 |      8 |
+| fsbc          | pranay       | ECE            |             45 |      9 |
+| fsbc          | sandeep      | ECE            |             65 |     10 |
+| fsbc          | saurabh      | ECE            |             65 |     11 |
+| fsda          | shyam        | ME             |             67 |     12 |
+| fsde          | mohit        | EE             |             67 |     13 |
+| fsds          | ajay         | ME             |             78 |     14 |
+| fsda          | saurabh      | cs             |             80 |     15 |
+| fsda          | shyam        | cs             |             80 |     16 |
+| fsda          | sanket       | cs             |             81 |     17 |
+| fsda          | sanket       | cs             |             82 |     18 |
+| fsds          | snehal       | CI             |             89 |     19 |
+| fsde          | prateek      | EE             |             89 |     20 |
++---------------+--------------+----------------+----------------+--------+
+*/
+
+-- select student_batch, student_name, student_stream, students_marks,
+-- row_number() over (partition by student_batch order by students_marks) as "RowNum"
+-- from ineuron_students; 
+
+-- OUTPUT:
+/*
++---------------+--------------+----------------+----------------+--------+
+| student_batch | student_name | student_stream | students_marks | RowNum |
++---------------+--------------+----------------+----------------+--------+
+| fsbc          | chaitra      | ECE            |             23 |      1 |
+| fsbc          | pranay       | ECE            |             45 |      2 |
+| fsda          | shyam        | cs             |             80 |      3 |
+| fsda          | sanket       | cs             |             81 |      4 |
+| fsda          | sanket       | cs             |             82 |      5 |
+| fsde          | vivek        | EE             |             23 |      1 |
+| fsde          | mithun       | ECE            |             23 |      2 |
+| fsde          | anuj         | CI             |             43 |      3 |
+| fsde          | gaurav       | EE             |             45 |      4 |
+| fsde          | mohit        | EE             |             67 |      5 |
+| fsde          | prateek      | EE             |             89 |      6 |
+| fsds          | manisha      | CI             |             34 |      1 |
+| fsds          | ajay         | ME             |             45 |      2 |
+| fsds          | rakesh       | CI             |             45 |      3 |
+| fsds          | ajay         | ME             |             78 |      4 |
+| fsds          | snehal       | CI             |             89 |      5 |
++---------------+--------------+----------------+----------------+--------+
+*/
+
+-- TODO: get the toppers of each batch
+-- SELECT * FROM (
+--     SELECT student_batch, student_name, student_stream, students_marks,
+--     ROW_NUMBER() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) as "Rownum"
+--     FROM ineuron_students
+-- ) AS testData WHERE Rownum = 1;
+
+-- output:
+/*
++---------------+--------------+----------------+----------------+--------+
+| student_batch | student_name | student_stream | students_marks | Rownum |
++---------------+--------------+----------------+----------------+--------+
+| fsbc          | sandeep      | ECE            |             65 |      1 |
+| fsda          | sanket       | cs             |             82 |      1 |
+| fsde          | prateek      | EE             |             89 |      1 |
+| fsds          | snehal       | CI             |             89 |      1 |
++---------------+--------------+----------------+----------------+--------+
+but this query has problem if there two students with same marks, it will always get only one */
