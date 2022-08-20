@@ -298,6 +298,62 @@ but this query has problem if there two students with same marks as in fsbc batc
 -- NTILE(1) OVER() as "SingleGroup"
 -- from ineuron_students;
 
+-- OUTPUT:
+/*
++------------+--------------+----------------+-------------+
+| student_id | student_name | students_marks | SingleGroup |
++------------+--------------+----------------+-------------+
+|        100 | saurabh      |             80 |           1 |
+|        102 | sanket       |             81 |           1 |
+|        103 | shyam        |             80 |           1 |
+|        104 | sanket       |             82 |           1 |
+|        105 | shyam        |             67 |           1 |
+|        106 | ajay         |             45 |           1 |
+|        106 | ajay         |             78 |           1 |
+|        108 | snehal       |             89 |           1 |
+|        109 | manisha      |             34 |           1 |
+|        110 | rakesh       |             45 |           1 |
+|        111 | anuj         |             43 |           1 |
+|        112 | mohit        |             67 |           1 |
+|        113 | vivek        |             23 |           1 |
+|        114 | gaurav       |             45 |           1 |
+|        115 | prateek      |             89 |           1 |
+|        116 | mithun       |             23 |           1 |
+|        117 | chaitra      |             23 |           1 |
+|        118 | pranay       |             45 |           1 |
+|        119 | sandeep      |             65 |           1 |
+|        119 | saurabh      |             65 |           1 |
++------------+--------------+----------------+-------------+
+*/
+
 -- SELECT student_id, student_name, students_marks,
 -- NTILE(2) OVER() as "TwoGroups"
 -- from ineuron_students;
+
+-- OUTPUT:
+/*
++------------+--------------+----------------+-----------+
+| student_id | student_name | students_marks | TwoGroups |
++------------+--------------+----------------+-----------+
+|        100 | saurabh      |             80 |         1 |
+|        102 | sanket       |             81 |         1 |
+|        103 | shyam        |             80 |         1 |
+|        104 | sanket       |             82 |         1 |
+|        105 | shyam        |             67 |         1 |
+|        106 | ajay         |             45 |         1 |
+|        106 | ajay         |             78 |         1 |
+|        108 | snehal       |             89 |         1 |
+|        109 | manisha      |             34 |         1 |
+|        110 | rakesh       |             45 |         1 |
+|        111 | anuj         |             43 |         2 |
+|        112 | mohit        |             67 |         2 |
+|        113 | vivek        |             23 |         2 |
+|        114 | gaurav       |             45 |         2 |
+|        115 | prateek      |             89 |         2 |
+|        116 | mithun       |             23 |         2 |
+|        117 | chaitra      |             23 |         2 |
+|        118 | pranay       |             45 |         2 |
+|        119 | sandeep      |             65 |         2 |
+|        119 | saurabh      |             65 |         2 |
++------------+--------------+----------------+-----------+
+*/
