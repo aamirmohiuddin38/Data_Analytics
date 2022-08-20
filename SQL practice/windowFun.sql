@@ -420,3 +420,38 @@ but this query has problem if there two students with same marks as in fsbc batc
 |        117 | fsbc          | chaitra      | ECE            |             23 | chaitra@gmail.com |       NULL |
 +------------+---------------+--------------+----------------+----------------+-------------------+------------+
 */
+
+-- TODO: FIRST_VALUE() and LAST_VALUE():
+--  they return the first and last value of ordered set
+
+-- SELECT * , First_value(students_marks) OVER(order by students_marks desc) as "First value" FROM ineuron_students;
+
+-- output:
+/*
++------------+---------------+--------------+----------------+----------------+-------------------+-------------+
+| student_id | student_batch | student_name | student_stream | students_marks | student_mail_id   | First value |
++------------+---------------+--------------+----------------+----------------+-------------------+-------------+
+|        108 | fsds          | snehal       | CI             |             89 | snehal@gmail.com  |          89 |
+|        115 | fsde          | prateek      | EE             |             89 | prateek@gmail.com |          89 |
+|        104 | fsda          | sanket       | cs             |             82 | sanket@gmail.com  |          89 |
+|        102 | fsda          | sanket       | cs             |             81 | sanket@gmail.com  |          89 |
+|        100 | fsda          | saurabh      | cs             |             80 | saurabh@gmail.com |          89 |
+|        103 | fsda          | shyam        | cs             |             80 | shyam@gmail.com   |          89 |
+|        106 | fsds          | ajay         | ME             |             78 | ajay@gmail.com    |          89 |
+|        105 | fsda          | shyam        | ME             |             67 | shyam@gmail.com   |          89 |
+|        112 | fsde          | mohit        | EE             |             67 | mohit@gmail.com   |          89 |
+|        119 | fsbc          | sandeep      | ECE            |             65 | sandeep@gmail.com |          89 |
+|        119 | fsbc          | saurabh      | ECE            |             65 | saurabh@gmail.com |          89 |
+|        106 | fsds          | ajay         | ME             |             45 | ajay@gmail.com    |          89 |
+|        110 | fsds          | rakesh       | CI             |             45 | rakesh@gmail.com  |          89 |
+|        114 | fsde          | gaurav       | EE             |             45 | gaurav@gmail.com  |          89 |
+|        118 | fsbc          | pranay       | ECE            |             45 | pranay@gmail.com  |          89 |
+|        111 | fsde          | anuj         | CI             |             43 | anuj@gmail.com    |          89 |
+|        109 | fsds          | manisha      | CI             |             34 | manisha@gmail.com |          89 |
+|        113 | fsde          | vivek        | EE             |             23 | vivek@gmail.com   |          89 |
+|        116 | fsde          | mithun       | ECE            |             23 | mithun@gmail.com  |          89 |
+|        117 | fsbc          | chaitra      | ECE            |             23 | chaitra@gmail.com |          89 |
++------------+---------------+--------------+----------------+----------------+-------------------+-------------+
+*/
+
+-- SELECT * , LAST_VALUE(students_marks) OVER(ORDER BY students_marks DESC) as "Last value" FROM ineuron_students;
