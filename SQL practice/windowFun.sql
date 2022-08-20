@@ -290,3 +290,14 @@ but this query has problem if there two students with same marks as in fsbc batc
 | fsds          | snehal       | CI             |             89 |      1 |   1 |        1 |
 +---------------+--------------+----------------+----------------+--------+-----+----------+
 */
+
+-- TODO: OTHER WINDOW FUNCTIONS:
+-- TODO: NTILE(n): it distributes the total no. of rows of table into specifed no. of groups n.
+
+-- SELECT student_id, student_name, students_marks,
+-- NTILE(1) OVER() as "SingleGroup"
+-- from ineuron_students;
+
+-- SELECT student_id, student_name, students_marks,
+-- NTILE(2) OVER() as "TwoGroups"
+-- from ineuron_students;
