@@ -198,3 +198,95 @@ but this query has problem if there two students with same marks as in fsbc batc
 */
 
 -- ok we got what we wanted to, but again there is a problem, when same rank is given, the next rank value is assigned to any other (2 in our case)
+
+-- TODO: DENSE_RANK():
+
+-- SELECT student_batch, student_name, student_stream, students_marks,
+-- ROW_NUMBER() OVER (ORDER BY students_marks) AS "RowNum",
+-- RANK() OVER (ORDER BY students_marks) AS "Rnk",
+-- DENSE_RANK() OVER (ORDER BY students_marks) AS "DenseRnk"
+-- FROM ineuron_students;
+
+-- Output:
+/*
++---------------+--------------+----------------+----------------+--------+-----+----------+
+| student_batch | student_name | student_stream | students_marks | RowNum | Rnk | DenseRnk |
++---------------+--------------+----------------+----------------+--------+-----+----------+
+| fsde          | vivek        | EE             |             23 |      1 |   1 |        1 |
+| fsde          | mithun       | ECE            |             23 |      2 |   1 |        1 |
+| fsbc          | chaitra      | ECE            |             23 |      3 |   1 |        1 |
+| fsds          | manisha      | CI             |             34 |      4 |   4 |        2 |
+| fsde          | anuj         | CI             |             43 |      5 |   5 |        3 |
+| fsds          | ajay         | ME             |             45 |      6 |   6 |        4 |
+| fsds          | rakesh       | CI             |             45 |      7 |   6 |        4 |
+| fsde          | gaurav       | EE             |             45 |      8 |   6 |        4 |
+| fsbc          | pranay       | ECE            |             45 |      9 |   6 |        4 |
+| fsbc          | sandeep      | ECE            |             65 |     10 |  10 |        5 |
+| fsbc          | saurabh      | ECE            |             65 |     11 |  10 |        5 |
+| fsda          | shyam        | ME             |             67 |     12 |  12 |        6 |
+| fsde          | mohit        | EE             |             67 |     13 |  12 |        6 |
+| fsds          | ajay         | ME             |             78 |     14 |  14 |        7 |
+| fsda          | saurabh      | cs             |             80 |     15 |  15 |        8 |
+| fsda          | shyam        | cs             |             80 |     16 |  15 |        8 |
+| fsda          | sanket       | cs             |             81 |     17 |  17 |        9 |
+| fsda          | sanket       | cs             |             82 |     18 |  18 |       10 |
+| fsds          | snehal       | CI             |             89 |     19 |  19 |       11 |
+| fsde          | prateek      | EE             |             89 |     20 |  19 |       11 |
++---------------+--------------+----------------+----------------+--------+-----+----------+
+*/
+
+-- SELECT student_batch, student_name, student_stream, students_marks,
+-- ROW_NUMBER() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) AS "RowNum",
+-- RANK() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) AS "Rnk",
+-- DENSE_RANK() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) AS "DenseRnk"
+-- FROM ineuron_students;
+
+-- Output:
+/*
++---------------+--------------+----------------+----------------+--------+-----+----------+
+| student_batch | student_name | student_stream | students_marks | RowNum | Rnk | DenseRnk |
++---------------+--------------+----------------+----------------+--------+-----+----------+
+| fsbc          | sandeep      | ECE            |             65 |      1 |   1 |        1 |
+| fsbc          | saurabh      | ECE            |             65 |      2 |   1 |        1 |
+| fsbc          | pranay       | ECE            |             45 |      3 |   3 |        2 |
+| fsbc          | chaitra      | ECE            |             23 |      4 |   4 |        3 |
+| fsda          | sanket       | cs             |             82 |      1 |   1 |        1 |
+| fsda          | sanket       | cs             |             81 |      2 |   2 |        2 |
+| fsda          | saurabh      | cs             |             80 |      3 |   3 |        3 |
+| fsda          | shyam        | cs             |             80 |      4 |   3 |        3 |
+| fsda          | shyam        | ME             |             67 |      5 |   5 |        4 |
+| fsde          | prateek      | EE             |             89 |      1 |   1 |        1 |
+| fsde          | mohit        | EE             |             67 |      2 |   2 |        2 |
+| fsde          | gaurav       | EE             |             45 |      3 |   3 |        3 |
+| fsde          | anuj         | CI             |             43 |      4 |   4 |        4 |
+| fsde          | vivek        | EE             |             23 |      5 |   5 |        5 |
+| fsde          | mithun       | ECE            |             23 |      6 |   5 |        5 |
+| fsds          | snehal       | CI             |             89 |      1 |   1 |        1 |
+| fsds          | ajay         | ME             |             78 |      2 |   2 |        2 |
+| fsds          | ajay         | ME             |             45 |      3 |   3 |        3 |
+| fsds          | rakesh       | CI             |             45 |      4 |   3 |        3 |
+| fsds          | manisha      | CI             |             34 |      5 |   5 |        4 |
++---------------+--------------+----------------+----------------+--------+-----+----------+
+*/
+
+-- TODO: Get the toppers of each batch (back to our question)
+-- SELECT * FROM (
+--     SELECT student_batch, student_name, student_stream, students_marks,
+--     ROW_NUMBER() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) AS "RowNum",
+--     RANK() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) AS "Rnk",
+--     DENSE_RANK() OVER (PARTITION BY student_batch ORDER BY students_marks DESC) AS "DenseRnk"
+--     FROM ineuron_students
+-- ) AS testData where DenseRnk = 1;
+
+-- Output:
+/*
++---------------+--------------+----------------+----------------+--------+-----+----------+
+| student_batch | student_name | student_stream | students_marks | RowNum | Rnk | DenseRnk |
++---------------+--------------+----------------+----------------+--------+-----+----------+
+| fsbc          | sandeep      | ECE            |             65 |      1 |   1 |        1 |
+| fsbc          | saurabh      | ECE            |             65 |      2 |   1 |        1 |
+| fsda          | sanket       | cs             |             82 |      1 |   1 |        1 |
+| fsde          | prateek      | EE             |             89 |      1 |   1 |        1 |
+| fsds          | snehal       | CI             |             89 |      1 |   1 |        1 |
++---------------+--------------+----------------+----------------+--------+-----+----------+
+*/
