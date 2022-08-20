@@ -357,3 +357,66 @@ but this query has problem if there two students with same marks as in fsbc batc
 |        119 | saurabh      |             65 |         2 |
 +------------+--------------+----------------+-----------+
 */
+
+-- TODO: LAG() and LEAD()
+-- The LAG function has the ability to fetch the data from the previous row, while LEAD fetches from the subsequent row.
+
+-- SELECT * , LAG(students_marks) OVER(order by students_marks desc) as "Prev Marks" FROM ineuron_students;
+
+-- output:
+/*
++------------+---------------+--------------+----------------+----------------+-------------------+------------+
+| student_id | student_batch | student_name | student_stream | students_marks | student_mail_id   | Prev Marks |
++------------+---------------+--------------+----------------+----------------+-------------------+------------+
+|        108 | fsds          | snehal       | CI             |             89 | snehal@gmail.com  |       NULL |
+|        115 | fsde          | prateek      | EE             |             89 | prateek@gmail.com |         89 |
+|        104 | fsda          | sanket       | cs             |             82 | sanket@gmail.com  |         89 |
+|        102 | fsda          | sanket       | cs             |             81 | sanket@gmail.com  |         82 |
+|        100 | fsda          | saurabh      | cs             |             80 | saurabh@gmail.com |         81 |
+|        103 | fsda          | shyam        | cs             |             80 | shyam@gmail.com   |         80 |
+|        106 | fsds          | ajay         | ME             |             78 | ajay@gmail.com    |         80 |
+|        105 | fsda          | shyam        | ME             |             67 | shyam@gmail.com   |         78 |
+|        112 | fsde          | mohit        | EE             |             67 | mohit@gmail.com   |         67 |
+|        119 | fsbc          | sandeep      | ECE            |             65 | sandeep@gmail.com |         67 |
+|        119 | fsbc          | saurabh      | ECE            |             65 | saurabh@gmail.com |         65 |
+|        106 | fsds          | ajay         | ME             |             45 | ajay@gmail.com    |         65 |
+|        110 | fsds          | rakesh       | CI             |             45 | rakesh@gmail.com  |         45 |
+|        114 | fsde          | gaurav       | EE             |             45 | gaurav@gmail.com  |         45 |
+|        118 | fsbc          | pranay       | ECE            |             45 | pranay@gmail.com  |         45 |
+|        111 | fsde          | anuj         | CI             |             43 | anuj@gmail.com    |         45 |
+|        109 | fsds          | manisha      | CI             |             34 | manisha@gmail.com |         43 |
+|        113 | fsde          | vivek        | EE             |             23 | vivek@gmail.com   |         34 |
+|        116 | fsde          | mithun       | ECE            |             23 | mithun@gmail.com  |         23 |
+|        117 | fsbc          | chaitra      | ECE            |             23 | chaitra@gmail.com |         23 |
++------------+---------------+--------------+----------------+----------------+-------------------+------------+
+*/
+
+-- SELECT * , LEAD(students_marks) OVER(order by students_marks desc) as "Next Marks" FROM ineuron_students;
+
+-- output:
+/*
++------------+---------------+--------------+----------------+----------------+-------------------+------------+
+| student_id | student_batch | student_name | student_stream | students_marks | student_mail_id   | Next Marks |
++------------+---------------+--------------+----------------+----------------+-------------------+------------+
+|        108 | fsds          | snehal       | CI             |             89 | snehal@gmail.com  |         89 |
+|        115 | fsde          | prateek      | EE             |             89 | prateek@gmail.com |         82 |
+|        104 | fsda          | sanket       | cs             |             82 | sanket@gmail.com  |         81 |
+|        102 | fsda          | sanket       | cs             |             81 | sanket@gmail.com  |         80 |
+|        100 | fsda          | saurabh      | cs             |             80 | saurabh@gmail.com |         80 |
+|        103 | fsda          | shyam        | cs             |             80 | shyam@gmail.com   |         78 |
+|        106 | fsds          | ajay         | ME             |             78 | ajay@gmail.com    |         67 |
+|        105 | fsda          | shyam        | ME             |             67 | shyam@gmail.com   |         67 |
+|        112 | fsde          | mohit        | EE             |             67 | mohit@gmail.com   |         65 |
+|        119 | fsbc          | sandeep      | ECE            |             65 | sandeep@gmail.com |         65 |
+|        119 | fsbc          | saurabh      | ECE            |             65 | saurabh@gmail.com |         45 |
+|        106 | fsds          | ajay         | ME             |             45 | ajay@gmail.com    |         45 |
+|        110 | fsds          | rakesh       | CI             |             45 | rakesh@gmail.com  |         45 |
+|        114 | fsde          | gaurav       | EE             |             45 | gaurav@gmail.com  |         45 |
+|        118 | fsbc          | pranay       | ECE            |             45 | pranay@gmail.com  |         43 |
+|        111 | fsde          | anuj         | CI             |             43 | anuj@gmail.com    |         34 |
+|        109 | fsds          | manisha      | CI             |             34 | manisha@gmail.com |         23 |
+|        113 | fsde          | vivek        | EE             |             23 | vivek@gmail.com   |         23 |
+|        116 | fsde          | mithun       | ECE            |             23 | mithun@gmail.com  |         23 |
+|        117 | fsbc          | chaitra      | ECE            |             23 | chaitra@gmail.com |       NULL |
++------------+---------------+--------------+----------------+----------------+-------------------+------------+
+*/
