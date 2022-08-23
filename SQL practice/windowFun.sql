@@ -518,3 +518,14 @@ but this query has problem if there two students with same marks as in fsbc batc
 |        109 | fsds          | manisha      | CI             |             34 | manisha@gmail.com |         34 |
 +------------+---------------+--------------+----------------+----------------+-------------------+------------+
 */
+
+Whenever we use an ORDER BY in an analytic clause we get default windowing clause of "RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW"
+Logically a Windowed Aggregate Function is newly calculated for each row within the PARTITION based on all ROWS between a starting row and an ending row.
+
+Starting and ending rows might be fixed or relative to the current row based on the following keywords:
+
+CURRENT ROW, the current row
+UNBOUNDED PRECEDING, all rows before the current row -> fixed
+UNBOUNDED FOLLOWING, all rows after the current row -> fixed
+x PRECEDING, x rows before the current row -> relative
+y FOLLOWING, y rows after the current row -> relative
