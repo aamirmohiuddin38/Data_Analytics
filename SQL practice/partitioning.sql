@@ -60,7 +60,10 @@ Now what we can do is we can create new table where in we can store the data yea
 which will optimise our query execution -> for this PARTITIONING COMES INTO PICTURE */
 
 -- TODO: TYPES OF PARTITIONING
--- TODO: "RANGE" PARTITIONING:
+-- TODO: "RANGE" PARTITIONING: A table that is partitioned by range is partitioned in such a way that each partition contains rows for which the partitioning expression value lies within a given range.
+-- Ranges should be contiguous but not overlapping, and are defined using the VALUES LESS THAN operator.
+
+/* https://dev.mysql.com/doc/mysql-partitioning-excerpt/5.6/en/partitioning-range.html */
 
 -- create table ineuron_courses1(
 -- course_name varchar(50),
