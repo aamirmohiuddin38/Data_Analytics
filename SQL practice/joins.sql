@@ -48,3 +48,17 @@ s.student_id, s.student_name, s.student_course_id
 FROM course c 
 INNER JOIN student s
 ON c.course_id = s.student_course_id
+
+-- TODO: LEFT JOIN
+SELECT c.course_id, c.course_name, c.course_desc, 
+s.student_id, s.student_name, s.student_course_id
+FROM course c 
+LEFT JOIN student s
+ON c.course_id = s.student_course_id
+
+SELECT c.course_id, c.course_name, c.course_desc, 
+s.student_id, s.student_name, s.student_course_id
+FROM course c 
+LEFT JOIN student s
+ON c.course_id = s.student_course_id
+WHERE s.student_id IS NULL
