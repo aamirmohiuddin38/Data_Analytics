@@ -165,8 +165,14 @@ show index from course5
 select course_id , course_name from course 
 union 
 select student_id , student_name from student 
-
+-- duplicates are removed in case Union
 
 (select course_desc , course_name from course 
 union 
 select student_id , student_name from student )
+
+-- UNION ALL
+(select course_desc , course_name from course 
+union all
+select student_id , student_name from student )
+-- dupicates are not removed in Union all
