@@ -76,3 +76,15 @@ FROM course c
 RIGHT JOIN student s
 ON c.course_id = s.student_course_id
 WHERE c.course_id IS NULL
+
+--TODO: CROSS JOIN
+SELECT c.course_id, c.course_name, c.course_desc, 
+s.student_id, s.student_name, s.student_course_id
+FROM course c 
+CROSS JOIN student s
+ON c.course_id = s.student_course_id
+
+SELECT c.course_id, c.course_name, c.course_desc, 
+s.student_id, s.student_name, s.student_course_id
+FROM course c 
+CROSS JOIN student s
