@@ -64,5 +64,14 @@ SELECT DISTINCT language.name
                             -- "OR"
 
     SELECT language.name,film.release_year, COUNT(language.language_id) AS number_of_films 
-        FROM language LEFT JOIN film ON film.language_id = language.language_id WHERE film.release_year
-        BETWEEN 2001 AND 2010 GROUP BY language.language_id;
+        FROM language LEFT JOIN film ON film.language_id = language.language_id
+        WHERE film.release_year
+        BETWEEN 2001 AND 2010 
+        GROUP BY language.language_id;
+
+
+-- Q.7: The film ALONE TRIP (id:17) was actually released in Mandarin, update the info.
+
+UPDATE film
+    SET language_id = (SELECT language.language_id from language WHERE name = "Mandarin")
+WHERE film.film_id = 17;
