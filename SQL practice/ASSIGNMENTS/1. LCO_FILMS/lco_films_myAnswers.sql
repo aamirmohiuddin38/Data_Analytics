@@ -47,4 +47,10 @@ SELECT DISTINCT film.title , country.country
     INNER JOIN country ON country.country_id=city.country_id 
     WHERE country.country = "India"; 
 
--- Q.5: 
+-- Q.5: How many actors are from the United States?
+
+SELECT COUNT(*) as No_of_US_actors
+    FROM actor INNER JOIN address ON address.address_id = actor.address_id
+                INNER JOIN city ON city.city_id = address.city_id
+                INNER JOIN country ON country.country_id = city.country_id
+                WHERE country.country = "United States";
