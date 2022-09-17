@@ -75,3 +75,19 @@ SELECT DISTINCT language.name
 UPDATE film
     SET language_id = (SELECT language.language_id from language WHERE name = "Mandarin")
 WHERE film.film_id = 17;
+
+-- Q.8: Fetch cast details of films released during 2005 and 2015 with PG rating.
+
+SELECT actor.first_name, film.title, film.release_year, film.rating
+    FROM actor INNER JOIN film_actor ON film_actor.actor_id = actor.actor_id
+                INNER JOIN film ON film.film_id = film_actor.film_id
+    WHERE (film.release_year BETWEEN 2005 AND 2015)
+    AND (film.rating = "PG");
+
+                -- "OR"
+
+SELECT CONCAT(actor.first_name, " ", actor.last_name) AS actor_name, film.title,film.release_year,film.rating 
+        FROM actor INNER JOIN film_actor ON film_actor.actor_id = actor.actor_id 
+        INNER JOIN film ON film.film_id = film_actor.film_id 
+        WHERE film.release_year BETWEEN 2005 AND 2015 
+        AND film.rating = "PG";
