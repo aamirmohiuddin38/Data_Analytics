@@ -25,3 +25,14 @@ UPDATE address
             WHERE actor_id = 36);
 
 */
+
+/*
+-- Q.3: Add the new actors (id : 105 , 95) in film  ARSENIC INDEPENDENCE (id:41).
+INSERT INTO film_actor (actor_id, film_id)
+        VALUES (105, 41),
+                (95, 41)
+    ON DUPLICATE KEY UPDATE
+    actor_id = VALUES(actor_id),
+    film_id = VALUES(film_id);
+
+    /*
