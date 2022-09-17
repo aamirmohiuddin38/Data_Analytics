@@ -20,7 +20,7 @@ WHERE actor.actor_id=36
 
 UPDATE address
     SET address = "677 Jazz Street"
-    WHERE
+    WHERE address_id = 
         (SELECT address_id FROM actor
             WHERE actor_id = 36);
 
