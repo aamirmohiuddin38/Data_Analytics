@@ -54,3 +54,15 @@ SELECT COUNT(*) as No_of_US_actors
                 INNER JOIN city ON city.city_id = address.city_id
                 INNER JOIN country ON country.country_id = city.country_id
                 WHERE country.country = "United States";
+
+-- Q.6: Get all languages in which films are released in the year between 2001 and 2010.
+
+SELECT DISTINCT language.name
+    FROM language INNER JOIN film ON language.language_id = film.language_id
+    WHERE film.release_year BETWEEN 2001 AND 2010;
+
+                            -- "OR"
+
+    SELECT language.name,film.release_year, COUNT(language.language_id) AS number_of_films 
+        FROM language LEFT JOIN film ON film.language_id = language.language_id WHERE film.release_year
+        BETWEEN 2001 AND 2010 GROUP BY language.language_id;
