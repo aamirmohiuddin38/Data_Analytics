@@ -91,3 +91,41 @@ SELECT CONCAT(actor.first_name, " ", actor.last_name) AS actor_name, film.title,
         INNER JOIN film ON film.film_id = film_actor.film_id 
         WHERE film.release_year BETWEEN 2005 AND 2015 
         AND film.rating = "PG";
+
+-- Q.9: In which year most films were released? 
+
+SELECT film.release_year, COUNT(film.release_year) AS no_of_films 
+    FROM `film` 
+    GROUP BY (film.release_year) 
+    ORDER BY no_of_films DESC
+    LIMIT 1;
+
+            -- "OR"
+
+SELECT release_year, count(film_id)
+    from film
+    group by release_year 
+    ORDER BY count(film_id) DESC
+    LIMIT 1;
+            -- "OR"
+SELECT * FROM(
+        SELECT release_year, 
+                COUNT(film_id) cnt, 
+                DENSE_RANK() OVER (ORDER BY COUNT(film_id) DESC) drnk
+            FROM film
+            GROUP BY release_year 
+) AS test 
+WHERE drnk = 1;
+            -- "OR"
+WITH
+cte AS (
+    SELECT release_year, 
+        COUNT(film_id) cnt, 
+        DENSE_RANK() OVER (ORDER BY COUNT(film_id) DESC) drnk
+    FROM film
+    GROUP BY release_year 
+)
+SELECT release_year, cnt
+FROM cte
+WHERE drnk = 1;
+
