@@ -129,3 +129,34 @@ SELECT release_year, cnt
 FROM cte
 WHERE drnk = 1;
 
+-- Q.10: In which year least films were released?
+
+SELECT release_year, count(release_year) AS no_of_movies
+    FROM film
+    GROUP BY release_year
+    ORDER BY count(release_year) ASC 
+    LIMIT 1;
+
+                -- "OR"
+
+SELECT * FROM (
+    SELECT release_year,
+            COUNT(release_year) AS CNT,
+            DENSE_RANK() OVER (ORDER BY COUNT(release_year) ASC) as "drnk"
+            FROM film
+            GROUP BY release_year
+) AS test
+WHERE drnk = 1;
+
+                -- "OR"
+
+WITH
+cte AS (
+    SELECT release_year, count(film_id) as no_of_movies,
+        DENSE_RANK() OVER(ORDER BY COUNT(film_id) ASC) as "drnk"
+    FROM film
+    GROUP BY release_year
+)
+SELECT release_year, no_of_movies
+    FROM cte
+    WHERE drnk = 1;
