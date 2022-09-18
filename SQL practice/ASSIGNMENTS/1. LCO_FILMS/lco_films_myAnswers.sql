@@ -195,3 +195,28 @@ SELECT film.film_id, film.title, film.description, film.release_year, film.lengt
     RIGHT JOIN film_category ON film_category.film_id = film.film_id 
     LEFT JOIN category ON category.category_id=film_category.category_id  
     WHERE film.rating="NC-17" AND category.name="Sci-Fi";
+
+
+    -- Q.13: The actor FRED COSTNER (id:16) shifted to a new address: 
+--           055,  Piazzale Michelangelo, Postal Code - 50125 , District - Rifredi at Florence, Italy.  
+--           Insert the new city and update the address of the actor.
+
+                City -> Florence
+                Country -> Italy
+                District -> Rifredi
+                Address -> 055, Piazzale Michelangelo
+                Postal Code -> 50125
+
+-- Insert new city
+INSERT INTO city(city, country_id)
+        VALUES('Florence', (SELECT country_id FROM country WHERE country = 'Italy'));
+
+-- Update the Address
+UPDATE address 
+    INNER JOIN actor ON actor.address_id = address.address_id 
+    SET 
+        address.address = "055,  Piazzale Michelangelo", 
+        address.district = "Rifredi ", 
+        address.city_id = (SELECT city_id FROM city WHERE city.city = "Florence") , 
+        address.postal_code = "50125" 
+    WHERE actor.actor_id = 16;
