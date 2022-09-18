@@ -179,3 +179,19 @@ SELECT *,
 SELECT * 
 from cte
 WHERE release_year = 2014 AND drnk = 1;
+
+-- Q.12: Get all Sci- Fi movies with NC-17 ratings and language they are screened in.
+
+SELECT film.title, category.name, film.rating, language.name
+    FROM film INNER JOIN film_category ON film_category.film_id = film.film_id
+                INNER JOIN category ON category.category_id = film_category.category_id
+                INNER JOIN language ON language.language_id = film.language_id
+                WHERE category.name = "Sci-Fi" AND film.rating = "NC-17";
+
+                -- "OR"
+
+SELECT film.film_id, film.title, film.description, film.release_year, film.length, film.rating,category.name, language.name 
+    FROM film LEFT JOIN language ON language.language_id=film.language_id 
+    RIGHT JOIN film_category ON film_category.film_id = film.film_id 
+    LEFT JOIN category ON category.category_id=film_category.category_id  
+    WHERE film.rating="NC-17" AND category.name="Sci-Fi";
