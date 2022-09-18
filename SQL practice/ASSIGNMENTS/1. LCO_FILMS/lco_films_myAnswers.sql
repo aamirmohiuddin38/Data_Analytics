@@ -160,3 +160,22 @@ cte AS (
 SELECT release_year, no_of_movies
     FROM cte
     WHERE drnk = 1;
+
+-- Q. 11: Get the details of the film with maximum length released in 2014 
+
+SELECT *, language.name as language 
+    FROM `film` LEFT JOIN language ON language.language_id = film.language_id 
+    WHERE film.release_year = "2014" AND film.length = (SELECT MAX(film.length) FROM film);
+
+            -- "OR"
+
+WITH
+cte as(
+SELECT *,
+    DENSE_RANK() OVER(ORDER BY max(length) desc) as drnk
+    from film 
+    group by film_id
+)
+SELECT * 
+from cte
+WHERE release_year = 2014 AND drnk = 1;
