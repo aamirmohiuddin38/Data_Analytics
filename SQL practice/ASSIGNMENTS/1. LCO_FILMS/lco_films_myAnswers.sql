@@ -288,3 +288,9 @@ WHERE drnk = 1;
 DELETE FROM film_actor
     WHERE actor_id = (SELECT actor_id FROM actor WHERE first_name ="JOHNNY" AND last_name = "LOLLOBRIGIDA") 
     AND film_id = (SELECT film_id FROM film WHERE title = "GRAIL FRANKENSTEIN");
+
+-- Q.20: The HARPER DYING movie is an animated movie with Drama and Comedy. Assign these categories to the movie.
+INSERT INTO film_category(category_id, film_id) 
+    VALUES ((SELECT category_id FROM category WHERE category.name="Drama"), (SELECT film_id FROM film WHERE film.title ="HARPER DYING")),
+    ((SELECT category_id FROM category WHERE category.name="Comedy"),(SELECT film_id FROM film WHERE film.title ="HARPER DYING"))
+    ON DUPLICATE KEY UPDATE film_id = VALUES(film_id) , category_id = VALUES(category_id);
