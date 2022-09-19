@@ -261,3 +261,10 @@ INSERT INTO `film_actor`(`actor_id`, `film_id`)
         VALUES ((SELECT actor_id FROM actor WHERE actor.first_name = "PENELOPE" AND actor.last_name = "GUINESS") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )), 
             ((SELECT actor_id FROM actor WHERE actor.first_name = "NICK" AND actor.last_name = "WAHLBERG") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )) ,
             ((SELECT actor_id FROM actor WHERE actor.first_name = "JOE" AND actor.last_name = "SWANK") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" ));
+
+-- Q. 17: Assign a new category Thriller  to the movie ANGELS LIFE.
+
+INSERT INTO category(name) VALUES ("Thriller");
+
+INSERT INTO film_category(film_id, category_id)
+        VALUES ((SELECT film_id FROM film WHERE title = "ANGELS LIFE"), (SELECT category_id FROM category WHERE name ="Thriller"));
