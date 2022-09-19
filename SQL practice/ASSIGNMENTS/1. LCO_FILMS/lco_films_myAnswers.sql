@@ -245,3 +245,11 @@ replacement_cost, rating, special_features)
         (SELECT language_id from language WHERE name = "English"),
         (SELECT language_id from language WHERE name = "English"),
         6,3.99, 100, 20.99, "PG-13", "Trailers,Deleted Scenes ");
+
+
+-- Q. 15: Assign the category Action, Classics, Drama  to the movie “No Time to Die” .
+
+INSERT INTO `film_category`(`category_id`, `film_id`) 
+        VALUES  ((SELECT category_id FROM category WHERE category.name = "Action"), (SELECT film_id FROM film WHERE film.title = "No Time to Die" )), 
+                ((SELECT category_id FROM category WHERE category.name = "Classics") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )) ,
+                ((SELECT category_id FROM category WHERE category.name = "Drama") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" ));
