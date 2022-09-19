@@ -253,3 +253,11 @@ INSERT INTO `film_category`(`category_id`, `film_id`)
         VALUES  ((SELECT category_id FROM category WHERE category.name = "Action"), (SELECT film_id FROM film WHERE film.title = "No Time to Die" )), 
                 ((SELECT category_id FROM category WHERE category.name = "Classics") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )) ,
                 ((SELECT category_id FROM category WHERE category.name = "Drama") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" ));
+
+
+-- Q. 16: Assign the cast: PENELOPE GUINESS, NICK WAHLBERG, JOE SWANK to the movie “No Time to Die” .
+
+INSERT INTO `film_actor`(`actor_id`, `film_id`) 
+        VALUES ((SELECT actor_id FROM actor WHERE actor.first_name = "PENELOPE" AND actor.last_name = "GUINESS") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )), 
+            ((SELECT actor_id FROM actor WHERE actor.first_name = "NICK" AND actor.last_name = "WAHLBERG") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )) ,
+            ((SELECT actor_id FROM actor WHERE actor.first_name = "JOE" AND actor.last_name = "SWANK") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" ));
