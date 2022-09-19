@@ -220,3 +220,28 @@ UPDATE address
         address.city_id = (SELECT city_id FROM city WHERE city.city = "Florence") , 
         address.postal_code = "50125" 
     WHERE actor.actor_id = 16;
+
+-- Q. 14: A new film “No Time to Die” is releasing in 2020 whose details are :  
+        -- Title :- No Time to Die 
+        -- Description: Recruited to rescue a kidnapped scientist, globe-trotting spy James Bond finds 
+        -- himself hot on the trail of a mysterious villain, who's armed with a dangerous new technology. 
+        -- Language: English 
+        -- Org. Language : English 
+        -- Length : 100 
+        -- Rental duration : 6 
+        -- Rental rate : 3.99
+        -- Rating : PG-13 
+        -- Replacement cost : 20.99 
+        -- Special Features = Trailers,Deleted Scenes 
+        
+        -- Insert the above data. 
+
+INSERT INTO film(title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length, 
+replacement_cost, rating, special_features)
+        VALUES("No Time to Die", 
+        "Recruited to rescue a kidnapped scientist, globe-trotting spy James Bond finds 
+        imself hot on the trail of a mysterious villain, who's armed with a dangerous new technology.",
+        2020,
+        (SELECT language_id from language WHERE name = "English"),
+        (SELECT language_id from language WHERE name = "English"),
+        6,3.99, 100, 20.99, "PG-13", "Trailers,Deleted Scenes ");
