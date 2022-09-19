@@ -269,7 +269,7 @@ INSERT INTO category(name) VALUES ("Thriller");
 INSERT INTO film_category(film_id, category_id)
         VALUES ((SELECT film_id FROM film WHERE title = "ANGELS LIFE"), (SELECT category_id FROM category WHERE name ="Thriller"));
 
--- Q.19: Which actor acted in most movies?
+-- Q.18: Which actor acted in most movies?
 
 WITH
 cte as(
@@ -282,3 +282,5 @@ cte as(
 SELECT actor_id, No_of_movies
 FROM cte
 WHERE drnk = 1;
+
+
