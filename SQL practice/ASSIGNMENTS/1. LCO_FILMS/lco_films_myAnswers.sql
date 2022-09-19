@@ -283,4 +283,8 @@ SELECT actor_id, No_of_movies
 FROM cte
 WHERE drnk = 1;
 
+-- Q.19: The actor JOHNNY LOLLOBRIGIDA was removed from the movie GRAIL FRANKENSTEIN. How would you update that record?
 
+DELETE FROM film_actor
+    WHERE actor_id = (SELECT actor_id FROM actor WHERE first_name ="JOHNNY" AND last_name = "LOLLOBRIGIDA") 
+    AND film_id = (SELECT film_id FROM film WHERE title = "GRAIL FRANKENSTEIN");
