@@ -290,7 +290,24 @@ DELETE FROM film_actor
     AND film_id = (SELECT film_id FROM film WHERE title = "GRAIL FRANKENSTEIN");
 
 -- Q.20: The HARPER DYING movie is an animated movie with Drama and Comedy. Assign these categories to the movie.
+
 INSERT INTO film_category(category_id, film_id) 
     VALUES ((SELECT category_id FROM category WHERE category.name="Drama"), (SELECT film_id FROM film WHERE film.title ="HARPER DYING")),
     ((SELECT category_id FROM category WHERE category.name="Comedy"),(SELECT film_id FROM film WHERE film.title ="HARPER DYING"))
     ON DUPLICATE KEY UPDATE film_id = VALUES(film_id) , category_id = VALUES(category_id);
+
+-- Q. 21: The entire cast of the movie WEST LION has changed. The new actors are DAN TORN, 
+        -- MAE HOFFMAN, SCARLETT DAMON. How would you update the record in the safest way.
+
+DELETE FROM film_actor  
+    WHERE film_id = (SELECT film_id FROM film WHERE film.title = "WEST LION"); -- Deleting previous cast first
+
+INSERT INTO film_actor(actor_id, film_id) VALUES 
+        ((SELECT actor_id FROM actor WHERE actor.first_name = "DAN" AND actor.last_name="TORN"), (SELECT film_id FROM film WHERE film.title="WEST LION")),
+        ((SELECT actor_id FROM actor WHERE actor.first_name = "MAE" AND actor.last_name="HOFFMAN"), (SELECT film_id FROM film WHERE film.title="WEST LION")),
+        ((SELECT actor_id FROM actor WHERE actor.first_name = "SCARLETT" AND actor.last_name="DAMON"), (SELECT film_id FROM film WHERE film.title="WEST LION"));
+
+                -- "OR"
+
+
+
