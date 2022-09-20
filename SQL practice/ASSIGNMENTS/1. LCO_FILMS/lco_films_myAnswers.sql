@@ -350,3 +350,7 @@ SELECT CONCAT(actor.first_name, " " ,actor.last_name) AS Actor, film.title, city
                     INNER JOIN address ON address.address_id = actor.address_id
                     INNER JOIN city ON city.city_id = address.address_id
                     WHERE film.title = "WESTWARD SEABISCUIT";
+
+-- Q. 26: What is the total length of all movies played in 2008
+
+SELECT SUM(length) as totol_length from film WHERE release_year = 2008;
