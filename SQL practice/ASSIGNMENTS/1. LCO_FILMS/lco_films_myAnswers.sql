@@ -420,3 +420,15 @@ select count(film.language_id) AS German
 SELECT * 
 FROM movies_released, ENG, ITL, JPN, MND, FRN, GER
 WHERE release_year = 2019;
+
+-- Q. 30: Which actor did least movies
+WITH 
+cte AS(
+        SELECT film_actor.actor_id AS ID, CONCAT(actor.first_name," ",actor.last_name) as Actor,
+            COUNT(film_actor.actor_id) as CNT,
+            DENSE_RANK() OVER(ORDER BY COUNT(film_actor.actor_id) ASC) AS drnk
+            FROM film_actor INNER JOIN actor ON actor.actor_id = film_actor.actor_id
+            GROUP BY film_actor.actor_id
+)
+SELECT ID, Actor, CNT FROM cte
+WHERE drnk = 1;
