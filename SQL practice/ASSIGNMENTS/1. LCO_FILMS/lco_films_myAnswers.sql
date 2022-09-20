@@ -249,7 +249,7 @@ replacement_cost, rating, special_features)
 
 -- Q. 15: Assign the category Action, Classics, Drama  to the movie “No Time to Die” .
 
-INSERT INTO `film_category`(`category_id`, `film_id`) 
+INSERT INTO film_category(category_id, film_id) 
         VALUES  ((SELECT category_id FROM category WHERE category.name = "Action"), (SELECT film_id FROM film WHERE film.title = "No Time to Die" )), 
                 ((SELECT category_id FROM category WHERE category.name = "Classics") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )) ,
                 ((SELECT category_id FROM category WHERE category.name = "Drama") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" ));
@@ -257,7 +257,7 @@ INSERT INTO `film_category`(`category_id`, `film_id`)
 
 -- Q. 16: Assign the cast: PENELOPE GUINESS, NICK WAHLBERG, JOE SWANK to the movie “No Time to Die” .
 
-INSERT INTO `film_actor`(`actor_id`, `film_id`) 
+INSERT INTO film_actor(actor_id, film_id) 
         VALUES ((SELECT actor_id FROM actor WHERE actor.first_name = "PENELOPE" AND actor.last_name = "GUINESS") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )), 
             ((SELECT actor_id FROM actor WHERE actor.first_name = "NICK" AND actor.last_name = "WAHLBERG") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" )) ,
             ((SELECT actor_id FROM actor WHERE actor.first_name = "JOE" AND actor.last_name = "SWANK") , (SELECT film_id FROM film WHERE film.title = "No Time to Die" ));
@@ -365,3 +365,58 @@ SELECT film.title, film.release_year, film.length, language.name as lang
 SELECT release_year, COUNT(film_id) AS No_of_movies
     FROM film
     GROUP BY release_year;
+
+-- Q. 29: How many languages of movies were released each year 
+
+-- just for 2019 (trying to make it dynamic)
+WITH 
+movies_released AS(
+select release_year, count(film_id) AS No_of_movies
+    FROM film
+    GROUP BY film.release_year
+),
+ENG AS(
+select count(film.language_id) AS English
+        FROM film
+        WHERE language_id = (SELECT language_id from language WHERE name = "English")
+        AND
+        release_year = "2019"
+),
+ITL AS(
+select count(film.language_id) AS Italian
+        FROM film
+        WHERE language_id = (SELECT language_id from language WHERE name = "Italian")
+        AND
+        release_year = "2019"
+),
+JPN AS(
+select count(film.language_id) AS Japanese
+        FROM film
+        WHERE language_id = (SELECT language_id from language WHERE name = "Japanese")
+        AND
+        release_year = "2019"
+),
+MND AS(
+select count(film.language_id) AS Mandarin
+        FROM film
+        WHERE language_id = (SELECT language_id from language WHERE name = "Mandarin")
+        AND
+        release_year = "2019"
+),
+FRN AS(
+select count(film.language_id) AS French
+        FROM film
+        WHERE language_id = (SELECT language_id from language WHERE name = "French")
+        AND
+        release_year = "2019"
+),
+GER AS(
+select count(film.language_id) AS German
+        FROM film
+        WHERE language_id = (SELECT language_id from language WHERE name = "German")
+        AND
+        release_year = "2019"
+)
+SELECT * 
+FROM movies_released, ENG, ITL, JPN, MND, FRN, GER
+WHERE release_year = 2019;
