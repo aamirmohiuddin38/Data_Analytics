@@ -319,3 +319,17 @@ INSERT INTO film_category(category_id, film_id)
     VALUES ((SELECT category_id FROM category WHERE category.name = "Classics"), (SELECT film_id FROM film WHERE film.title="WEST LION")), 
     ((SELECT category_id FROM category WHERE category.name = "Family"), (SELECT film_id FROM film WHERE film.title="WEST LION")), 
     ((SELECT category_id FROM category WHERE category.name = "Children"), (SELECT film_id FROM film WHERE film.title="WEST LION"));
+
+
+-- Q.23: How many actors acted in films released in 2017? 
+
+SELECT film.release_year,
+        COUNT(film_actor.actor_id) as cnt
+        FROM film_actor
+        INNER JOIN film ON film.film_id = film_actor.film_id
+        WHERE film.release_year = 2017
+        GROUP BY film.release_year;
+
+                -- "OR"
+
+        SELECT COUNT(*) FROM film_actor INNER JOIN film ON film.film_id=film_actor.film_id WHERE film.release_year = 2017;
