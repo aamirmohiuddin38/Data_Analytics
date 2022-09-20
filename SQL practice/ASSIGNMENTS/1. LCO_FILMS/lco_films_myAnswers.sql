@@ -360,3 +360,8 @@ SELECT SUM(length) as totol_length from film WHERE release_year = 2008;
 SELECT film.title, film.release_year, film.length, language.name as lang
     FROM film INNER JOIN language ON language.language_id = film.language_id
         WHERE film.length = (SELECT MIN(length) FROM film);
+
+-- Q. 28: How many movies were released each year
+SELECT release_year, COUNT(film_id) AS No_of_movies
+    FROM film
+    GROUP BY release_year;
