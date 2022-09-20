@@ -333,3 +333,11 @@ SELECT film.release_year,
                 -- "OR"
 
         SELECT COUNT(*) FROM film_actor INNER JOIN film ON film.film_id=film_actor.film_id WHERE film.release_year = 2017;
+
+-- Q. 24: How many Sci-Fi films released between the year 2007 to 2017
+
+SELECT COUNT(film.film_id) as CNT
+        FROM film INNER JOIN film_category ON film_category.film_id = film.film_id
+                INNER JOIN category ON category.category_id = film_category.category_id
+                WHERE film.release_year BETWEEN 2007 AND 2017
+                AND category.name = "Sci-Fi";
