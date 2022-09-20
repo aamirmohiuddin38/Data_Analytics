@@ -310,4 +310,12 @@ INSERT INTO film_actor(actor_id, film_id) VALUES
                 -- "OR"
 
 
+-- Q.22: The entire category of the movie WEST LION was wrongly inserted. The correct categories 
+        -- are Classics, Family, Children. How would you update the record ensuring no wrong data is left?
 
+DELETE FROM film_category WHERE film_id = (SELECT film_id FROM film WHERE film.title = "WEST LION");
+
+INSERT INTO film_category(category_id, film_id) 
+    VALUES ((SELECT category_id FROM category WHERE category.name = "Classics"), (SELECT film_id FROM film WHERE film.title="WEST LION")), 
+    ((SELECT category_id FROM category WHERE category.name = "Family"), (SELECT film_id FROM film WHERE film.title="WEST LION")), 
+    ((SELECT category_id FROM category WHERE category.name = "Children"), (SELECT film_id FROM film WHERE film.title="WEST LION"));
