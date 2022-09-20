@@ -341,3 +341,12 @@ SELECT COUNT(film.film_id) as CNT
                 INNER JOIN category ON category.category_id = film_category.category_id
                 WHERE film.release_year BETWEEN 2007 AND 2017
                 AND category.name = "Sci-Fi";
+
+-- Q. 25: Fetch the actors of the movie WESTWARD SEABISCUIT with the city they live in.
+
+SELECT CONCAT(actor.first_name, " " ,actor.last_name) AS Actor, film.title, city.city
+        FROM film INNER JOIN film_actor ON film.film_id = film_actor.film_id
+                    INNER JOIN actor ON actor.actor_id = film_actor.actor_id
+                    INNER JOIN address ON address.address_id = actor.address_id
+                    INNER JOIN city ON city.city_id = address.address_id
+                    WHERE film.title = "WESTWARD SEABISCUIT";
