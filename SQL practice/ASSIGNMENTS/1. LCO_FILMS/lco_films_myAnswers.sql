@@ -354,3 +354,9 @@ SELECT CONCAT(actor.first_name, " " ,actor.last_name) AS Actor, film.title, city
 -- Q. 26: What is the total length of all movies played in 2008
 
 SELECT SUM(length) as totol_length from film WHERE release_year = 2008;
+
+-- Q. 27: Which film has the shortest length? In which language and year was it released
+
+SELECT film.title, film.release_year, film.length, language.name as lang
+    FROM film INNER JOIN language ON language.language_id = film.language_id
+        WHERE film.length = (SELECT MIN(length) FROM film);
