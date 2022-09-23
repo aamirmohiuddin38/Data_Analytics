@@ -27,3 +27,12 @@ INSERT INTO customer(first_name, last_name, dob, driver_license_number, email)
             (SELECT location.id FROM location WHERE location.street_address = "5150 W 55th St"),
             (SELECT location.id FROM location WHERE location.street_address = "9217 Airport Blvd")
         );
+
+-- Q.3:  The customer with the driving license W045654959 changed his/her drop off location to 
+        -- 1001 Henderson St,  Fort Worth, TX, zip - 76102  and wants to extend the rental upto 4 more 
+        -- days. Update the record.
+
+UPDATE rental
+    INNER JOIN customer ON customer.id = rental.customer_id 
+    SET drop_off_location_id = (SELECT location.id FROM location WHERE location.zipcode=76102),
+        end_date=(SELECT end_date + INTERVAL 4 DAY) WHERE customer.driver_license_number="W045654959";
