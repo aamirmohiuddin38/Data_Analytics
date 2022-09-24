@@ -107,3 +107,19 @@ SELECT c.email, ri.*
         INNER JOIN rental r ON r.id = ri.rental_id
         INNER JOIN customer c ON c.id = r.customer_id
     WHERE c.email = "smacias3@amazonaws.com";
+
+-- Q. 10: Insert the invoice for customer (driving license: K59042656E ) with following details:- 
+    -- Car Rent : 785.4 
+    -- Equipment Rent : 114.65 
+    -- Insurance Cost : 688.2 
+    -- Tax : 26.2 
+    -- Total: 1614.45 
+    -- Discount : 213.25 
+    -- Net Amount: 1401.2
+
+    INSERT INTO rental_invoice(car_rent, equipment_rent_total, insurance_cost_total, tax_surcharges_and_fees, total_amount_payable, 
+        discount_amount, net_amount_payable, rental_id) 
+        VALUES (785.4, 114.65, 688.2, 26.2, 1614.45, 213.25, 1401.2,
+        (SELECT rental.id FROM rental 
+        INNER JOIN customer ON customer.id = rental.customer_id 
+        WHERE customer.driver_license_number = "K59042656E"));
