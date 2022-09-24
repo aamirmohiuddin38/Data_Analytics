@@ -123,3 +123,14 @@ SELECT c.email, ri.*
         (SELECT rental.id FROM rental 
         INNER JOIN customer ON customer.id = rental.customer_id 
         WHERE customer.driver_license_number = "K59042656E"));
+
+-- Q. 11: Which rental has the most number of equipment
+
+WITH
+CTE as(
+    SELECT rental_id, COUNT(equipment_type_id),
+        DENSE_RANK() OVER(ORDER BY COUNT(equipment_type_id)) drnk
+        FROM rental_has_equipment_type
+        GROUP BY rental_id
+)
+SELECT * from CTE WHERE drnk = 1;
