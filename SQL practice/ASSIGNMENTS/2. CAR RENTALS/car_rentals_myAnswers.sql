@@ -79,3 +79,10 @@ SELECT c.driver_license_number AS LIC_NO,ri.insurance_cost_total AS TotalInsuCos
 )
 SELECT * FROM CTE WHERE drnk = 1;
 
+
+-- Q.7: Insert a new equipment type with following details. 
+        -- Name : Mini TV 
+        -- Rental Value : 8.99
+
+INSERT INTO equipment_type(name, rental_value)
+        VALUES("Mini Tv", 8.99);
