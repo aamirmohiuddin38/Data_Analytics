@@ -36,3 +36,23 @@ UPDATE rental
     INNER JOIN customer ON customer.id = rental.customer_id 
     SET drop_off_location_id = (SELECT location.id FROM location WHERE location.zipcode=76102),
         end_date=(SELECT end_date + INTERVAL 4 DAY) WHERE customer.driver_license_number="W045654959";
+
+    -- Q.4: Fetch all rental details with their equipment type.
+
+    --(**  https://stackoverflow.com/questions/10710271/join-table-twice-on-two-different-columns-of-the-same-table)
+
+SELECT CONCAT(c.first_name, ' ', c.last_name) AS CustName, c.driver_license_number As LIC_NO,
+        r.start_date, r.end_date, 
+        CONCAT(p.street_address,' ',p.city,' ',p.state,' ',p.zipcode) AS PickUp_Loc,
+        CONCAT(d.street_address,' ',d.city,' ',d.state,' ',d.zipcode) AS DropOff_Loc,
+        v.name AS VehicleType,
+        f.name AS FuelOption,
+        e.name AS EquipType
+    FROM customer c
+        INNER JOIN rental r ON r.id = c.id
+        INNER JOIN location p ON p.id = r.pickup_location_id
+        INNER JOIN location d ON d.id = r.drop_off_location_id
+        INNER JOIN vehicle_type v ON v.id = r.vehicle_type_id
+        INNER JOIN fuel_option f ON f.id = r.fuel_option_id
+        INNER JOIN rental_has_equipment_type ON rental_has_equipment_type.rental_id = r.id
+        INNER JOIN equipment_type e ON e.id = rental_has_equipment_type.equipment_type_id;
