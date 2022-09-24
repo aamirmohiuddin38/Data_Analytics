@@ -65,3 +65,17 @@ SELECT v.id, v.brand, v.model, v.model_year, v.mileage, v.color,
     FROM vehicle v
     INNER JOIN vehicle_type vt ON vt.id = v.vehicle_type_id
     INNER JOIN location l ON l.id = v.current_location_id;
+
+-- Q.6: Get driving license of the customer with most rental insurances.
+WITH
+CTE AS(
+SELECT c.driver_license_number AS LIC_NO,ri.insurance_cost_total AS TotalInsuCost, COUNT(rhi.insurance_id) AS No_of_Insr,
+        DENSE_RANK() OVER(ORDER BY  COUNT(rhi.insurance_id) DESC) AS drnk
+        FROM customer c
+        INNER JOIN rental r ON r.customer_id = c.id
+        INNER JOIN rental_invoice ri ON ri.rental_id = r.id
+        INNER JOIN rental_has_insurance rhi ON rhi.rental_id = r.id
+        GROUP BY rhi.rental_id
+)
+SELECT * FROM CTE WHERE drnk = 1;
+
