@@ -86,3 +86,16 @@ SELECT * FROM CTE WHERE drnk = 1;
 
 INSERT INTO equipment_type(name, rental_value)
         VALUES("Mini Tv", 8.99);
+
+
+-- Q.8: Insert a new equipment with following details: 
+        -- Name : Garmin Mini TV 
+        -- Equipment type : Mini TV 
+        -- Current Location zip code : 60638
+
+INSERT INTO equipment(name, equipment_type_id, current_location_id)
+        VALUES(
+            "Garmin Mini TV",
+            (SELECT id FROM equipment_type WHERE name = "Mini TV"),
+            (SELECT id FROM location WHERE zipcode = 60638)
+        );
