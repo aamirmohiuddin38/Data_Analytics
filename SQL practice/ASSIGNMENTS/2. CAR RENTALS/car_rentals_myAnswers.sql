@@ -56,3 +56,12 @@ SELECT CONCAT(c.first_name, ' ', c.last_name) AS CustName, c.driver_license_numb
         INNER JOIN fuel_option f ON f.id = r.fuel_option_id
         INNER JOIN rental_has_equipment_type ON rental_has_equipment_type.rental_id = r.id
         INNER JOIN equipment_type e ON e.id = rental_has_equipment_type.equipment_type_id;
+
+-- Q.5: Fetch all details of vehicles
+
+SELECT v.id, v.brand, v.model, v.model_year, v.mileage, v.color,
+        vt.name AS VehicleType, vt.rental_value,
+        CONCAT(l.street_address," ",l.city," ",l.state," ", l.zipcode) AS CurLoc
+    FROM vehicle v
+    INNER JOIN vehicle_type vt ON vt.id = v.vehicle_type_id
+    INNER JOIN location l ON l.id = v.current_location_id;
