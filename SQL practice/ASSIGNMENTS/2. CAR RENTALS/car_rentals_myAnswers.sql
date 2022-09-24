@@ -99,3 +99,11 @@ INSERT INTO equipment(name, equipment_type_id, current_location_id)
             (SELECT id FROM equipment_type WHERE name = "Mini TV"),
             (SELECT id FROM location WHERE zipcode = 60638)
         );
+
+-- Q.9: Fetch rental invoice for customer (email: smacias3@amazonaws.com).
+
+SELECT c.email, ri.*
+    FROM rental_invoice ri
+        INNER JOIN rental r ON r.id = ri.rental_id
+        INNER JOIN customer c ON c.id = r.customer_id
+    WHERE c.email = "smacias3@amazonaws.com";
