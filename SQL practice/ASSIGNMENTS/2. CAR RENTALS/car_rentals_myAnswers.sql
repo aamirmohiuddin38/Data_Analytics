@@ -202,3 +202,8 @@ DELETE FROM rental_has_equipment_type WHERE
 
 UPDATE customer 
     SET phone = "510-624-4188" WHERE customer.driver_license_number = "K59042656E";
+
+-- Q.20: Increase the insurance cost of Cover The Car (LDW) by 5.65.
+
+UPDATE insurance 
+    SET cost = ( cost + 5.65) WHERE insurance.name = "Cover The Car (LDW)" ;
