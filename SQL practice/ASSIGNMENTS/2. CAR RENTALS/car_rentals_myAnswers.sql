@@ -178,3 +178,15 @@ INSERT INTO vehicle_type(name, rental_value) VALUES ("Hatchback", 33.88);
 INSERT INTO fuel_option(name, description) 
     VALUES ("Pre-paid (refunded)" , 
         "Customer buy a tank of fuel at pick-up and get refunded the amount customer don’t use.");
+
+-- Q.17: Assign the insurance : Cover My Belongings (PEP), Cover The Car (LDW) to the rental 
+    -- started on 25-08-2020 (created in Q2) by customer (Driving License:K59042656E).
+
+
+INSERT INTO rental_has_insurance (rental_id, insurance_id) 
+        VALUES
+        ((SELECT rental.id FROM rental INNER JOIN customer ON customer.id=rental.customer_id WHERE rental.start_date="2020-08-25" AND customer.driver_license_number="K59042656E"), 
+        (SELECT insurance.id FROM insurance WHERE insurance.name = "Cover My Belongings (PEP)")), 
+
+        ((SELECT rental.id FROM rental INNER JOIN customer ON customer.id=rental.customer_id WHERE rental.start_date="2020-08-25" AND customer.driver_license_number="K59042656E"), 
+        (SELECT insurance.id FROM insurance WHERE insurance.name = "Cover The Car (LDW)"));
