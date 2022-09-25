@@ -168,3 +168,7 @@ INSERT INTO location(street_address, city, state, zipcode)
         VALUES ("Tata", "Nexon", 2020, 17000, "blue",
             (SELECT vehicle_type.id FROM vehicle_type WHERE vehicle_type.name="Economy SUV"), 
             (SELECT location.id FROM location WHERE location.zipcode=20011));
+
+-- Q.15:  Insert new vehicle type Hatchback and rental value: 33.88.
+
+INSERT INTO vehicle_type(name, rental_value) VALUES ("Hatchback", 33.88);
