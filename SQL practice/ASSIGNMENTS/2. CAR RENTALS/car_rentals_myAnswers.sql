@@ -197,3 +197,8 @@ DELETE FROM rental_has_equipment_type WHERE
     rental_id = (SELECT id FROM rental WHERE start_date="2018-07-14" AND end_date="2018-07-23") 
     AND 
     equipment_type_id = (SELECT id FROM equipment_type WHERE name="Satellite Radio");
+
+-- q.19: Update phone to 510-624-4188 of customer (Driving License: K59042656E).
+
+UPDATE customer 
+    SET phone = "510-624-4188" WHERE customer.driver_license_number = "K59042656E";
