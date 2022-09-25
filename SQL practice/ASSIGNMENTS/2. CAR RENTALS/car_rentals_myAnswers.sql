@@ -154,3 +154,17 @@ SELECT * FROM CTE WHERE drnk = 1;
 
 INSERT INTO location(street_address, city, state, zipcode) 
     VALUES ("1460 Thomas Street", "Burr Ridge", "IL", 61257);
+
+-- Q. 14: Add the new vehicle with following details:- 
+    -- Brand: Tata  
+    -- Model: Nexon 
+    -- Model Year : 2020 
+    -- Mileage: 17000 
+    -- Color: Blue 
+    -- Vehicle Type: Economy SUV  
+    -- Current Location Zip: 20011
+
+    INSERT INTO vehicle(brand, model, model_year, mileage, color, vehicle_type_id, current_location_id) 
+        VALUES ("Tata", "Nexon", 2020, 17000, "blue",
+            (SELECT vehicle_type.id FROM vehicle_type WHERE vehicle_type.name="Economy SUV"), 
+            (SELECT location.id FROM location WHERE location.zipcode=20011));
