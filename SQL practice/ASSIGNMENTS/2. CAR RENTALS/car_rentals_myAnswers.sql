@@ -218,3 +218,8 @@ UPDATE equipment_type
 UPDATE insurance 
     SET cost = (SELECT cost * 2) 
     WHERE insurance.name != "Cover The Car (LDW)";
+
+-- Q.23: Fetch the maximum net amount of invoice generated.
+
+    SELECT MAX(rental_invoice.net_amount_payable)
+    AS maxAmt FROM rental_invoice;
