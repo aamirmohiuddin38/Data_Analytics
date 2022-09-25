@@ -212,3 +212,9 @@ UPDATE insurance
 
 UPDATE equipment_type 
     SET rental_value= (SELECT rental_value + 11.25);
+
+    -- Q.22: Increase the cost of all rental insurances twice except Cover The Car (LDW) by twice the current cost.
+
+UPDATE insurance 
+    SET cost = (SELECT cost * 2) 
+    WHERE insurance.name != "Cover The Car (LDW)";
