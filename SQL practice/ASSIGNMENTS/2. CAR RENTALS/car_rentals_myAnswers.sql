@@ -74,7 +74,7 @@ SELECT c.driver_license_number AS LIC_NO,ri.insurance_cost_total AS TotalInsuCos
         FROM customer c
         INNER JOIN rental r ON r.customer_id = c.id
         INNER JOIN rental_invoice ri ON ri.rental_id = r.id
-        INNER JOIN rental_has_insurance rhi ON rhi.rental_id = r.id
+        LEFT JOIN rental_has_insurance rhi ON rhi.rental_id = r.id
         GROUP BY rhi.rental_id
 )
 SELECT * FROM CTE WHERE drnk = 1;
@@ -134,3 +134,18 @@ CTE as(
         GROUP BY rental_id
 )
 SELECT * from CTE WHERE drnk = 1;
+
+-- Q.12: Get driving license of a customer with least number of rental insurances. 
+WITH
+CTE AS(
+SELECT c.driver_license_number AS LIC_NO,ri.insurance_cost_total AS TotalInsuCost, COUNT(rhi.insurance_id) AS No_of_Insr,
+        DENSE_RANK() OVER(ORDER BY  COUNT(rhi.insurance_id) ASC) AS drnk
+        FROM customer c
+        INNER JOIN rental r ON r.customer_id = c.id
+        INNER JOIN rental_invoice ri ON ri.rental_id = r.id
+        LEFT JOIN rental_has_insurance rhi ON rhi.rental_id = r.id
+        GROUP BY rhi.rental_id
+)
+SELECT * FROM CTE WHERE drnk = 1;
+
+
