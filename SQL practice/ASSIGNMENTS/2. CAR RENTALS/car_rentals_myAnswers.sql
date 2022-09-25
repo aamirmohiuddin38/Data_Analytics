@@ -223,3 +223,9 @@ UPDATE insurance
 
     SELECT MAX(rental_invoice.net_amount_payable)
     AS maxAmt FROM rental_invoice;
+
+-- Q.24: Update the dob of customer with driving license V435899293 to 1977-06-22
+
+    UPDATE customer 
+    SET dob = "1977-06-22" 
+    WHERE driver_license_number = "V435899293";
