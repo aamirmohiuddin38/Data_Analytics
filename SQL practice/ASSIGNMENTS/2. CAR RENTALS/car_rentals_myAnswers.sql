@@ -172,3 +172,9 @@ INSERT INTO location(street_address, city, state, zipcode)
 -- Q.15:  Insert new vehicle type Hatchback and rental value: 33.88.
 
 INSERT INTO vehicle_type(name, rental_value) VALUES ("Hatchback", 33.88);
+
+-- Q.16: Add new fuel option Pre-paid (refunded) with description: Customer buy a tank of fuel at pick-up and get refunded the amount customer don’t use..
+
+INSERT INTO fuel_option(name, description) 
+    VALUES ("Pre-paid (refunded)" , 
+        "Customer buy a tank of fuel at pick-up and get refunded the amount customer don’t use.");
