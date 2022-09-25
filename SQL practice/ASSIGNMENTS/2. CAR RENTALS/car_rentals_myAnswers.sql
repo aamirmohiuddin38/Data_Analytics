@@ -207,3 +207,8 @@ UPDATE customer
 
 UPDATE insurance 
     SET cost = ( cost + 5.65) WHERE insurance.name = "Cover The Car (LDW)" ;
+
+-- Q.21: Increase the rental value of all equipment types by 11.25.
+
+UPDATE equipment_type 
+    SET rental_value= (SELECT rental_value + 11.25);
