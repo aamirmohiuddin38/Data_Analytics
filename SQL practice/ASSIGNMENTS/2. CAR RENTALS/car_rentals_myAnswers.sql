@@ -148,4 +148,9 @@ SELECT c.driver_license_number AS LIC_NO,ri.insurance_cost_total AS TotalInsuCos
 )
 SELECT * FROM CTE WHERE drnk = 1;
 
+-- Q.13:  Insert new location with following details. 
+    -- Street address : 1460  Thomas Street 
+    -- City : Burr Ridge , State : IL, Zip - 61257
 
+INSERT INTO location(street_address, city, state, zipcode) 
+    VALUES ("1460 Thomas Street", "Burr Ridge", "IL", 61257);
