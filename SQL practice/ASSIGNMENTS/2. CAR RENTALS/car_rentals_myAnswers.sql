@@ -190,3 +190,10 @@ INSERT INTO rental_has_insurance (rental_id, insurance_id)
 
         ((SELECT rental.id FROM rental INNER JOIN customer ON customer.id=rental.customer_id WHERE rental.start_date="2020-08-25" AND customer.driver_license_number="K59042656E"), 
         (SELECT insurance.id FROM insurance WHERE insurance.name = "Cover The Car (LDW)"));
+
+-- Q.18: Remove equipment_type :Satellite Radio from rental started on 2018-07-14 and ended on 2018-07-23.
+
+DELETE FROM rental_has_equipment_type WHERE 
+    rental_id = (SELECT id FROM rental WHERE start_date="2018-07-14" AND end_date="2018-07-23") 
+    AND 
+    equipment_type_id = (SELECT id FROM equipment_type WHERE name="Satellite Radio");
