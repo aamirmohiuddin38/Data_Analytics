@@ -229,3 +229,10 @@ UPDATE insurance
     UPDATE customer 
     SET dob = "1977-06-22" 
     WHERE driver_license_number = "V435899293";
+
+-- Q.25: Insert new location with following details. 
+        -- Street address : 468  Jett Lane 
+        -- City : Gardena , State : CA, Zip - 90248
+
+    INSERT INTO location(street_address, city, state, zipcode) 
+        VALUES ("468 Jett Lane", "Gardena", "CA", 90248);
