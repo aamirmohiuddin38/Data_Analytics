@@ -258,3 +258,9 @@ INSERT INTO rental(start_date, end_date, customer_id, vehicle_type_id, fuel_opti
 UPDATE customer 
     SET driver_license_number = "K16046265" 
     WHERE driver_license_number = "G055017319";
+
+-- Q.28: Calculated the total sum of all insurance costs of all rentals.
+    SELECT SUM(i.cost) from
+    insurance i
+    INNER JOIN rental_has_insurance rhi 
+    ON i.id = rhi.insurance_id;
