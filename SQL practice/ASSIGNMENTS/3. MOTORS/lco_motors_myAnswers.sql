@@ -40,3 +40,14 @@ ORDER BY p.amount;
     UPDATE customers 
     SET sales_employee_id = 15657 
     WHERE phone = '2125557413';
+
+-- Q.5: Write a SQL query to fetch shipped motorcycles. 
+
+    SELECT o.order_id, o.order_date, o.required_date, o.shipped_date, o.status,
+        p.product_name, p.product_line
+        FROM orders o 
+            INNER JOIN orderdetails od ON od.order_id = o.order_id
+            INNER JOIN products p ON p.product_code = od.product_code
+        WHERE p.product_line = "Motorcycles"
+        AND o.status = "Shipped";
+
