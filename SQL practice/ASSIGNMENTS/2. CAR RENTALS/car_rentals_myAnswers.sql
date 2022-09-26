@@ -252,3 +252,9 @@ INSERT INTO rental(start_date, end_date, customer_id, vehicle_type_id, fuel_opti
             (SELECT fuel_option.id FROM fuel_option WHERE fuel_option.name="Pre-paid (refunded)"), 
             (SELECT location.id FROM location WHERE location.zipcode=90248),
             (SELECT location.id FROM location WHERE location.zipcode=20011));
+
+-- Q.27: Replace the driving license of the customer (Driving License: G055017319) with new one K16046265.
+
+UPDATE customer 
+    SET driver_license_number = "K16046265" 
+    WHERE driver_license_number = "G055017319";
