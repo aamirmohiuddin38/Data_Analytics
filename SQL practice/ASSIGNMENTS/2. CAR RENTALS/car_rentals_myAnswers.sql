@@ -268,3 +268,9 @@ UPDATE customer
 -- Q.29: How much discount we gave to customers in total in the rental invoice? 
 SELECT SUM(rental_invoice.discount_amount) AS Total_Dis_Amt
     FROM rental_invoice;
+
+-- Q.30: The Nissan Versa has been repainted to black. Update the record.
+
+UPDATE vehicle 
+    SET color = "black" 
+    WHERE brand = "Nissan" AND model = "Versa";
