@@ -264,3 +264,7 @@ UPDATE customer
     insurance i
     INNER JOIN rental_has_insurance rhi 
     ON i.id = rhi.insurance_id;
+
+-- Q.29: How much discount we gave to customers in total in the rental invoice? 
+SELECT SUM(rental_invoice.discount_amount) AS Total_Dis_Amt
+    FROM rental_invoice;
