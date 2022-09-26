@@ -22,3 +22,16 @@ FROM customers c
     INNER JOIN payments p ON p.customer_id = c.customer_id
 WHERE p.amount BETWEEN 5000 AND 35000
 ORDER BY p.amount;
+
+-- Q.3: Add new employee/salesman with following details:- 
+        -- EMP ID - 15657 
+        -- First Name : Lakshmi 
+        -- Last Name: Roy 
+        -- Extension : x4065 
+        -- Email: lakshmiroy1@lcomotors.com 
+        -- Office Code: 4 
+        -- Reports To: 1088 
+        -- Job Title: Sales Rep
+
+    INSERT INTO employees(employee_id, last_name, first_name, extension, email, office_code, reports_to, job_title) 
+        VALUES (15657, "Roy", "Lakshmi", "x4065", "lakshmiroy1@lcomotors.com",4,1088, "Sales Rep");
