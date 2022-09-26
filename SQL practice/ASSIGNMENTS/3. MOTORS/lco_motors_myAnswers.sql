@@ -35,3 +35,8 @@ ORDER BY p.amount;
 
     INSERT INTO employees(employee_id, last_name, first_name, extension, email, office_code, reports_to, job_title) 
         VALUES (15657, "Roy", "Lakshmi", "x4065", "lakshmiroy1@lcomotors.com",4,1088, "Sales Rep");
+
+-- Q.4: Assign the new employee(added above) to the customer whose phone is 2125557413 .
+    UPDATE customers 
+    SET sales_employee_id = 15657 
+    WHERE phone = '2125557413';
