@@ -236,3 +236,19 @@ UPDATE insurance
 
     INSERT INTO location(street_address, city, state, zipcode) 
         VALUES ("468 Jett Lane", "Gardena", "CA", 90248);
+
+
+-- Q.26: The new customer (Driving license: W045654959) wants to rent a car from 2020-09-15 to 
+        -- 2020-10-02. More details are as follows:  
+        -- Vehicle Type : Hatchback 
+        -- Fuel Option : Pre-paid (refunded) 
+        -- Pick Up location:  468  Jett Lane , Gardena , CA, zip- 90248 
+        -- Drop Location: 5911 Blair Rd NW, Washington, DC, zip - 20011
+
+INSERT INTO rental(start_date, end_date, customer_id, vehicle_type_id, fuel_option_id, pickup_location_id, drop_off_location_id) 
+    VALUES ("2020-09-15", "2020-10-02", 
+            (SELECT customer.id FROM customer WHERE customer.driver_license_number="W045654959"), 
+            (SELECT vehicle_type.id FROM vehicle_type WHERE vehicle_type.name="Hatchback"), 
+            (SELECT fuel_option.id FROM fuel_option WHERE fuel_option.name="Pre-paid (refunded)"), 
+            (SELECT location.id FROM location WHERE location.zipcode=90248),
+            (SELECT location.id FROM location WHERE location.zipcode=20011));
