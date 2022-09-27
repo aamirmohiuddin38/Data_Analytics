@@ -77,3 +77,9 @@ SELECT p.product_code, p.product_name, p.product_line, p.product_vendor, p.stock
     FROM products p
         INNER JOIN orderdetails od ON od.product_code = p.product_code
     WHERE od.quantity_ordered < 30;
+
+-- Q.9: It is noted that the payment (check number OM314933) was actually 2575. Update the record
+
+UPDATE payments 
+    SET amount = 2575 
+    WHERE payments.check_number = "OM314933";
