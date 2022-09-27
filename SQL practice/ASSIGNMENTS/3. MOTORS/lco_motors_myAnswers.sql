@@ -145,3 +145,14 @@ SELECT c.customer_id, c.customer_name,C.PHONE AS Mobile,
         WHERE c.country = "Belgium"
         AND o.status = "Shipped"
         AND year(o.shipped_date) = "2018"; 
+
+-- Q.17: Get the details of the salesman/employee with offices dealing with customers in Germany.
+
+SELECT e.employee_id, CONCAT(e.first_name," ", e.last_name) AS Emp_Name, e.extension, e.email, e.job_title,
+        o.office_code, o.phone,
+        CONCAT(COALESCE(o.city,''), ",", COALESCE(o.address_line1,''), "|",COALESCE(o.address_line2,''),"-", COALESCE(o.state,''),"-",COALESCE(o.country,''),"_",COALESCE(o.postal_code,'')) AS Offc_Address,
+        c.customer_id,c.customer_name AS Cust_Name, c.country As cust_country
+    FROM employees e
+        INNER JOIN offices o ON o.office_code = e.office_code
+        INNER JOIN customers c ON c.sales_employee_id = e.employee_id
+    WHERE c.country = 'Germany';
