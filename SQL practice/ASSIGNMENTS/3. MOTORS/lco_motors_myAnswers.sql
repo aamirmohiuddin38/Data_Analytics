@@ -93,3 +93,18 @@ SELECT e.employee_id, CONCAT(e.first_name," " ,e.last_name) AS Name, e.email, e.
             INNER JOIN customers c ON c.sales_employee_id = e.employee_id 
             INNER JOIN orders o ON o.customer_id = o.customer_id 
         WHERE o.status = "Resolved";
+
+-- Q.11: Get the details of the customer who made the maximum payment. 
+
+WITH 
+CTE AS(
+    SELECT c.customer_id, c.customer_name,C.PHONE AS Mobile,
+    CONCAT(COALESCE(c.address_line1,'')," ", COALESCE(c.address_line2,'')," ",COALESCE(c.city,'')," ",COALESCE(c.state,'')," ",COALESCE(c.postal_code,'')) AS Address,
+    c.country AS country,
+            p.amount,
+            DENSE_RANK() OVER(ORDER BY p.amount DESC) AS drnk
+        FROM customers C
+            INNER JOIN payments p ON p.customer_id = c.customer_id
+)
+SELECT * FROM CTE
+    WHERE drnk = 1;
