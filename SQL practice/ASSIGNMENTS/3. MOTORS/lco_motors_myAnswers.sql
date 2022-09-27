@@ -135,3 +135,13 @@ SELECT c.customer_id, c.customer_name,C.PHONE AS Mobile,
     FROM customers C
             INNER JOIN payments p ON p.customer_id = c.customer_id
     WHERE p.payment_date BETWEEN "2019-05-01" AND "2019-06-30";
+
+-- Q.16: How many orders shipped to Belgium in 2018?
+
+    SELECT COUNT(o.order_id) As no_of_orders,
+            c.country, o.status
+        FROM orders o
+            INNER JOIN customers c ON o.customer_id = c.customer_id
+        WHERE c.country = "Belgium"
+        AND o.status = "Shipped"
+        AND year(o.shipped_date) = "2018"; 
