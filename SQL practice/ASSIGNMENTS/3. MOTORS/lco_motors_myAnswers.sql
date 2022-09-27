@@ -69,3 +69,11 @@ SELECT CONCAT(c.first_name," ",c.last_name) AS Cust_Name,
 FROM customers C
     INNER JOIN orders o ON o.customer_id = c.customer_id
 WHERE o.status = "In Process";
+
+-- Q.8: How would you fetch the details of products with less than 30 orders?
+
+SELECT p.product_code, p.product_name, p.product_line, p.product_vendor, p.stock, p.buy_price, p.mrp,
+        od.quantity_ordered
+    FROM products p
+        INNER JOIN orderdetails od ON od.product_code = p.product_code
+    WHERE od.quantity_ordered < 30;
