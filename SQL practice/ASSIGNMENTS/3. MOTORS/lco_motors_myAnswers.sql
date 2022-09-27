@@ -122,3 +122,16 @@ SELECT o.*, c.country
             FROM customers c 
                 INNER JOIN orders o ON o.customer_id = c.customer_id
             WHERE c.country = "Finland";
+
+-- Q.14: Get the details of the customer who made the maximum payment
+
+        Already done --> Q.11
+
+-- Q. 15: Get the details of the customer and payments they made between May 2019 and June 2019.
+SELECT c.customer_id, c.customer_name,C.PHONE AS Mobile,
+        CONCAT(COALESCE(c.address_line1,'')," ", COALESCE(c.address_line2,'')," ",COALESCE(c.city,'')," ",COALESCE(c.state,'')," ",COALESCE(c.postal_code,'')) AS Address,
+        c.country AS country,
+        p.amount, p.payment_date
+    FROM customers C
+            INNER JOIN payments p ON p.customer_id = c.customer_id
+    WHERE p.payment_date BETWEEN "2019-05-01" AND "2019-06-30";
