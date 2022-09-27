@@ -108,3 +108,11 @@ CTE AS(
 )
 SELECT * FROM CTE
     WHERE drnk = 1;
+
+-- Q.12:  Fetch list of orders shipped to France.
+
+SELECT o.*, c.country
+    FROM orders o 
+        INNER JOIN customers c ON o.customer_id = c.customer_id
+    WHERE c.country = "France"
+    AND o.status = "Shipped";
