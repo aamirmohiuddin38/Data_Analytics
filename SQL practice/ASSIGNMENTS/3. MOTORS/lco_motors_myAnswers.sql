@@ -176,3 +176,16 @@ SELECT e.employee_id, CONCAT(e.first_name," ", e.last_name) AS Emp_Name, e.exten
 
     INSERT INTO orderdetails(order_id, product_code, quantity_ordered, each_price, order_line_number) 
         VALUES ( 10426 , "S12_3148" , 41, 151, 11);
+
+-- Q.19: Fetch details of employees who were reported for the payments made by the customers between June 2018 and July 2018.
+
+SELECT reported_emp.employee_id, reported_emp.first_name , reported_emp.last_name, reported_emp.email, reported_emp.job_title, 
+        reported_emp.extension , 
+        employees.employee_id AS reported_by_employee,
+        CONCAT(employees.first_name, " ", employees.last_name) AS reported_emp_name, 
+        customers.customer_id 
+    FROM employees 
+        INNER JOIN employees reported_emp ON reported_emp.employee_id = employees.reports_to 
+        INNER JOIN customers ON customers.sales_employee_id = employees.employee_id 
+        INNER JOIN payments ON payments.customer_id = customers.customer_id 
+    WHERE payments.payment_date BETWEEN '2018-06-01' AND '2018-07-31';
