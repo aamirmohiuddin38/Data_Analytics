@@ -189,3 +189,11 @@ SELECT reported_emp.employee_id, reported_emp.first_name , reported_emp.last_nam
         INNER JOIN customers ON customers.sales_employee_id = employees.employee_id 
         INNER JOIN payments ON payments.customer_id = customers.customer_id 
     WHERE payments.payment_date BETWEEN '2018-06-01' AND '2018-07-31';
+
+-- Q.20: A new payment was done by a customer(id: 119). Insert the below details. 
+        -- Check Number : OM314944 
+        -- Payment date : <today’s date> 
+        -- Amount : 33789.55 
+
+    INSERT INTO payments(customer_id, check_number, payment_date, amount) 
+        VALUES (119, "OM314944", CURRENT_DATE(), 33789.55);
