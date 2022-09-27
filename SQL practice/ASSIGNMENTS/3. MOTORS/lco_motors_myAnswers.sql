@@ -58,3 +58,14 @@ SELECT employees.employee_id, CONCAT(employees.first_name," ", employees.last_na
     FROM employees 
         INNER JOIN offices ON employees.office_code=offices.office_code 
         WHERE offices.city="Sydney";
+
+-- Q.7:  How would you fetch the details of customers whose orders are in process?
+SELECT CONCAT(c.first_name," ",c.last_name) AS Cust_Name,
+    c.customer_name AS Name,
+    C.PHONE AS Mobile,
+    CONCAT(COALESCE(c.address_line1,'')," ", COALESCE(c.address_line2,'')," ",COALESCE(c.city,'')," ",COALESCE(c.state,'')," ",COALESCE(c.postal_code,'')) AS Address,
+    c.country AS country,
+    o.status AS Order_Status
+FROM customers C
+    INNER JOIN orders o ON o.customer_id = c.customer_id
+WHERE o.status = "In Process";
