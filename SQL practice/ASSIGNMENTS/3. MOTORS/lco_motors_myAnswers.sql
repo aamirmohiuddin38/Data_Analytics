@@ -83,3 +83,13 @@ SELECT p.product_code, p.product_name, p.product_line, p.product_vendor, p.stock
 UPDATE payments 
     SET amount = 2575 
     WHERE payments.check_number = "OM314933";
+
+-- Q.10: Fetch the details of salesmen/employees dealing with customers whose orders are resolved.
+
+SELECT e.employee_id, CONCAT(e.first_name," " ,e.last_name) AS Name, e.email, e.job_title, e.extension, 
+                c.customer_id, 
+                o.order_id, o.status 
+        FROM employees e 
+            INNER JOIN customers c ON c.sales_employee_id = e.employee_id 
+            INNER JOIN orders o ON o.customer_id = o.customer_id 
+        WHERE o.status = "Resolved";
