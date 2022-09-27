@@ -51,3 +51,10 @@ ORDER BY p.amount;
         WHERE p.product_line = "Motorcycles"
         AND o.status = "Shipped";
 
+-- Q.6: Write a SQL query to get details of all employees/salesmen in the office located in Sydney.
+
+SELECT employees.employee_id, CONCAT(employees.first_name," ", employees.last_name) AS Name, employees.email, employees.extension, employees.job_title, 
+        offices.city 
+    FROM employees 
+        INNER JOIN offices ON employees.office_code=offices.office_code 
+        WHERE offices.city="Sydney";
