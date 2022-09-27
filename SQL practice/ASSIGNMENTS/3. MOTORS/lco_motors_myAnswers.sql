@@ -116,3 +116,9 @@ SELECT o.*, c.country
         INNER JOIN customers c ON o.customer_id = c.customer_id
     WHERE c.country = "France"
     AND o.status = "Shipped";
+
+-- Q.13:  How many customers are from Finland who placed orders.
+    SELECT  COUNT(c.customer_id) AS Order_count, c.country
+            FROM customers c 
+                INNER JOIN orders o ON o.customer_id = c.customer_id
+            WHERE c.country = "Finland";
