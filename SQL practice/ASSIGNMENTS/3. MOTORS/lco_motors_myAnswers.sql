@@ -156,3 +156,23 @@ SELECT e.employee_id, CONCAT(e.first_name," ", e.last_name) AS Emp_Name, e.exten
         INNER JOIN offices o ON o.office_code = e.office_code
         INNER JOIN customers c ON c.sales_employee_id = e.employee_id
     WHERE c.country = 'Germany';
+
+-- Q.18:  The customer (id:496 ) made a new order today and the details are as follows: 
+        -- Order id : 10426 
+        -- Product Code: S12_3148 
+        -- Quantity : 41 
+        -- Each price : 151 
+        -- Order line number : 11 
+        -- Order date : <today’s date> 
+        -- Required date: <10 days from today> 
+        -- Status: In Process
+
+    INSERT INTO orders(order_id, order_date, required_date, status,customer_id) 
+        VALUES (10426, 
+                CURRENT_DATE(), 
+                (CURRENT_DATE() + INTERVAL 10 DAY), 
+                "In Process" , 496);
+
+
+    INSERT INTO orderdetails(order_id, product_code, quantity_ordered, each_price, order_line_number) 
+        VALUES ( 10426 , "S12_3148" , 41, 151, 11);
