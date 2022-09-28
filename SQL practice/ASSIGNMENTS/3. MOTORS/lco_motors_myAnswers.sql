@@ -268,3 +268,12 @@ SELECT customers.customer_id, customers.first_name, customers.last_name, custome
 FROM customers 
     INNER JOIN payments ON payments.customer_id = customers.customer_id
     WHERE customers.country="France";
+
+-- Q.30: Get the office address of the employees/salesmen who report to employee 1143.
+SELECT DISTINCT o.office_code, o.phone,
+        CONCAT(COALESCE(o.city,''), ",", COALESCE(o.address_line1,''), "|",COALESCE(o.address_line2,''),"-", COALESCE(o.state,''),"-",COALESCE(o.country,''),"_",COALESCE(o.postal_code,'')) AS Offc_Address,
+        employees.employee_id
+    FROM employees 
+        INNER JOIN employees reports_emp ON reports_emp.employee_id = employees.reports_to 
+        INNER JOIN offices o ON o.office_code = employees.office_code 
+        WHERE employees.reports_to = "1143";
