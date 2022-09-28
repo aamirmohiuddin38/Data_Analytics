@@ -229,3 +229,11 @@ SELECT COUNT(customers.customer_id)
 SELECT orders.comments , orders.customer_id 
     FROM orders 
     WHERE orders.status = "Resolved";
+
+-- Q.25: Fetch the details of employees/salesmen in the USA with office addresses.
+
+SELECT employees.employee_id, employees.first_name ,employees.last_name, employees.email, employees.job_title, employees.extension, 
+    offices.office_code, offices.address_line1, offices.address_line2, offices.phone, offices.city, offices.state, offices.country, offices.postal_code, offices.territory 
+FROM employees 
+    INNER JOIN offices ON offices.office_code = employees.office_code 
+    WHERE offices.country = "USA";
