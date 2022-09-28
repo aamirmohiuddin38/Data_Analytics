@@ -223,3 +223,9 @@ SELECT COUNT(customers.customer_id)
     FROM customers 
         INNER JOIN orders ON orders.customer_id = customers.customer_id 
     WHERE customers.country = "USA";
+
+-- Q.24: Get the comments regarding resolved orders.
+
+SELECT orders.comments , orders.customer_id 
+    FROM orders 
+    WHERE orders.status = "Resolved";
