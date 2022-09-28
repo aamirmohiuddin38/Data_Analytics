@@ -237,3 +237,12 @@ SELECT employees.employee_id, employees.first_name ,employees.last_name, employe
 FROM employees 
     INNER JOIN offices ON offices.office_code = employees.office_code 
     WHERE offices.country = "USA";
+
+-- Q.26: Fetch total price of each order of motorcycles. (Hint: quantity x price for each record).
+
+SELECT products.product_code, products.product_line, products.buy_price AS Price_Per,
+        orderdetails.order_id, orderdetails.quantity_ordered AS Qty,
+        (products.buy_price * orderdetails.quantity_ordered) AS Total_Price
+    FROM products 
+        INNER JOIN orderdetails ON orderdetails.product_code = products.product_code
+    WHERE products.product_line = "Motorcycles";
