@@ -260,3 +260,11 @@ SELECT products.product_line,
 SELECT COUNT(customer_id) As Cust_of_France
     FROM customers 
 WHERE customers.country = "France";
+
+-- Q.29: Get the payments of customers living in France.
+
+SELECT customers.customer_id, customers.first_name, customers.last_name, customers.phone, customers.address_line1, customers.address_line2, customers.city, customers.state, customers.postal_code, customers.country, customers.credit_limit, 
+        payments.payment_date, payments.amount, payments.check_number 
+FROM customers 
+    INNER JOIN payments ON payments.customer_id = customers.customer_id
+    WHERE customers.country="France";
