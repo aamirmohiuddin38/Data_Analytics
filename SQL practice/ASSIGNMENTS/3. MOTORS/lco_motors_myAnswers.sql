@@ -240,9 +240,17 @@ FROM employees
 
 -- Q.26: Fetch total price of each order of motorcycles. (Hint: quantity x price for each record).
 
-SELECT products.product_code, products.product_line, products.buy_price AS Price_Per,
-        orderdetails.order_id, orderdetails.quantity_ordered AS Qty,
-        (products.buy_price * orderdetails.quantity_ordered) AS Total_Price
+SELECT products.product_code, products.product_line, 
+        orderdetails.each_price AS Price_Per, orderdetails.order_id, orderdetails.quantity_ordered AS Qty,
+        (orderdetails.each_price * orderdetails.quantity_ordered) AS Total_Price
     FROM products 
         INNER JOIN orderdetails ON orderdetails.product_code = products.product_code
     WHERE products.product_line = "Motorcycles";
+
+-- Q.27: Get the total worth of all planes ordered.
+
+SELECT products.product_line, 
+        SUM(orderdetails.each_price * orderdetails.quantity_ordered) AS Total_Worth
+    FROM products 
+        INNER JOIN orderdetails ON orderdetails.product_code = products.product_code
+    WHERE products.product_line = "Planes";
