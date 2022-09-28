@@ -254,3 +254,9 @@ SELECT products.product_line,
     FROM products 
         INNER JOIN orderdetails ON orderdetails.product_code = products.product_code
     WHERE products.product_line = "Planes";
+
+-- Q.28: How many customers belong to France?
+
+SELECT COUNT(customer_id) As Cust_of_France
+    FROM customers 
+WHERE customers.country = "France";
