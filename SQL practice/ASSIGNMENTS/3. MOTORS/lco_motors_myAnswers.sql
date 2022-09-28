@@ -216,3 +216,10 @@ FROM payments
     INNER JOIN orderdetails ON orderdetails.order_id = orders.order_id 
     INNER JOIN products ON products.product_code = orderdetails.product_code 
 WHERE products.product_line = "Classic Cars";
+
+-- Q.23: How many customers ordered from the USA?
+
+SELECT COUNT(customers.customer_id) 
+    FROM customers 
+        INNER JOIN orders ON orders.customer_id = customers.customer_id 
+    WHERE customers.country = "USA";
