@@ -197,3 +197,12 @@ SELECT reported_emp.employee_id, reported_emp.first_name , reported_emp.last_nam
 
     INSERT INTO payments(customer_id, check_number, payment_date, amount) 
         VALUES (119, "OM314944", CURRENT_DATE(), 33789.55);
+
+-- Q.21: Get the address of the office of the employees that reports to the employee whose id is 1102
+
+SELECT o.office_code, o.phone,
+        CONCAT(COALESCE(o.city,''), ",", COALESCE(o.address_line1,''), "|",COALESCE(o.address_line2,''),"-", COALESCE(o.state,''),"-",COALESCE(o.country,''),"_",COALESCE(o.postal_code,'')) AS Offc_Address
+    FROM employees 
+        INNER JOIN employees reports_emp ON reports_emp.employee_id = employees.reports_to 
+        INNER JOIN offices o ON o.office_code = employees.office_code 
+        WHERE employees.reports_to = "1102";
