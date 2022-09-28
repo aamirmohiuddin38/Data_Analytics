@@ -206,3 +206,13 @@ SELECT o.office_code, o.phone,
         INNER JOIN employees reports_emp ON reports_emp.employee_id = employees.reports_to 
         INNER JOIN offices o ON o.office_code = employees.office_code 
         WHERE employees.reports_to = "1102";
+
+-- Q.22: Get the details of the payments of classic cars.
+SELECT payments.check_number, payments.payment_date, payments.amount, 
+    products.product_name, products.product_line , customers.customer_id AS PaidBy 
+FROM payments 
+    INNER JOIN customers ON customers.customer_id = payments.customer_id 
+    INNER JOIN orders ON orders.customer_id = customers.customer_id 
+    INNER JOIN orderdetails ON orderdetails.order_id = orders.order_id 
+    INNER JOIN products ON products.product_code = orderdetails.product_code 
+WHERE products.product_line = "Classic Cars";
