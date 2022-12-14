@@ -12,3 +12,9 @@
 6. Creating Data Model.
 7. Creating Various Calculated Measures to get the insights.
 8. Creating Final Visualisation.
+
+## Final Report
+
+Click to visit report: <a> https://www.novypro.com/project/odi-cricket-report</a>
+
+![Cricket](https://user-images.githubusercontent.com/95753856/207562938-0d3ae0f4-ad80-4966-8ae2-beae54a3c216.png)
