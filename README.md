@@ -14,6 +14,7 @@ Some Important Resources:
 
 ## PYTHON
 
+* LateX snippets in Jupyter: <a> https://towardsdatascience.com/write-markdown-latex-in-the-jupyter-notebook-10985edb91fd </a>
 * Pandas: <a>https://towardsdatascience.com/the-ultimate-reference-for-clean-pandas-code-413df676e63c </a>
 * Pandas To SQL Translation: <a>https://towardsdatascience.com/pandas-isnt-enough-learn-these-25-pandas-to-sql-translations-to-upgrade-your-data-analysis-game-af8d0c26948d</a>
 
